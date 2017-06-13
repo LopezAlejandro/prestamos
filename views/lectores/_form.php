@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true, 'placeholder' => 'Nombre y Apellido']) ?>
 	 
 	 <?= $form->field($model, 'tipo_documento_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoDocumento::find()->orderBy('tipo_documento_id')->asArray()->all(), 'tipo_documento_id', 'tipo_documento_id'),
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoDocumento::find()->orderBy('tipo_documento_id')->asArray()->all(), 'tipo_documento_id', 'descripcion'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Tipo documento')],
         'pluginOptions' => [
             'allowClear' => true
@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'documento')->textInput(['maxlength' => true, 'placeholder' => 'Nro de Documento']) ?>
 
     <?= $form->field($model, 'tipo_lector_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoLector::find()->orderBy('tipo_lector_id')->asArray()->all(), 'tipo_lector_id', 'tipo_lector_id'),
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoLector::find()->orderBy('tipo_lector_id')->asArray()->all(), 'tipo_lector_id', 'descripcion'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Tipo lector')],
         'pluginOptions' => [
             'allowClear' => true

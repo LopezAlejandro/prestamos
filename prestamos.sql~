@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2017 at 07:43 PM
+-- Generation Time: Jun 13, 2017 at 04:30 PM
 -- Server version: 10.1.23-MariaDB
 -- PHP Version: 7.1.5
 
@@ -157,14 +157,6 @@ CREATE TABLE `tipo_documento` (
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `tipo_documento`
---
-
-INSERT INTO `tipo_documento` (`tipo_documento_id`, `descripcion`) VALUES
-(1, 'DNI'),
-(2, 'Pasaporte');
-
 -- --------------------------------------------------------
 
 --
@@ -176,18 +168,6 @@ CREATE TABLE `tipo_lector` (
   `descripcion` varchar(45) NOT NULL,
   `prestamo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tipo_lector`
---
-
-INSERT INTO `tipo_lector` (`tipo_lector_id`, `descripcion`, `prestamo`) VALUES
-(1, 'Alumno FADU', 7),
-(2, 'Alumno CBC', 7),
-(3, 'Docente', 7),
-(4, 'No Docente', 7),
-(5, 'Autoridad ', 7),
-(6, 'Otras Bibliotecas', 7);
 
 -- --------------------------------------------------------
 
@@ -244,8 +224,8 @@ ALTER TABLE `lectores`
 ALTER TABLE `libros`
   ADD PRIMARY KEY (`libros_id`),
   ADD KEY `deposito_id` (`deposito_id`),
-  ADD KEY `estado_id` (`estado_id`),
-  ADD KEY `tipo_libro_id` (`tipo_libro_id`) USING BTREE;
+  ADD KEY `tipo_libro_id` (`tipo_libro_id`),
+  ADD KEY `estado_id` (`estado_id`);
 
 --
 -- Indexes for table `multas`
@@ -320,17 +300,12 @@ ALTER TABLE `prestamos`
 -- AUTO_INCREMENT for table `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
-  MODIFY `tipo_documento_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tipo_documento_id` int(6) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tipo_lector`
 --
 ALTER TABLE `tipo_lector`
-  MODIFY `tipo_lector_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `tipo_libro`
---
-ALTER TABLE `tipo_libro`
-  MODIFY `tipo_libro_id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `tipo_lector_id` int(6) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -353,8 +328,8 @@ ALTER TABLE `lectores`
 -- Constraints for table `libros`
 --
 ALTER TABLE `libros`
-  ADD CONSTRAINT `libros_ibfk2` FOREIGN KEY (`tipo_libro_id`) REFERENCES `tipo_libro` (`tipo_libro_id`),
   ADD CONSTRAINT `libros_ibfk_1` FOREIGN KEY (`deposito_id`) REFERENCES `deposito` (`deposito_id`),
+  ADD CONSTRAINT `libros_ibfk_2` FOREIGN KEY (`tipo_libro_id`) REFERENCES `tipo_libro` (`tipo_libro_id`),
   ADD CONSTRAINT `libros_ibfk_3` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`estado_id`);
 
 --
