@@ -49,7 +49,7 @@ $this->registerJs($search);
                 'attribute' => 'tipo_documento_id',
                 'label' => Yii::t('app', 'Tipo Documento'),
                 'value' => function($model){                   
-                    return $model->tipoDocumento->descripcion;                   
+                    return $model->tipoDocumento->tipo_documento_id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoDocumento::find()->asArray()->all(), 'tipo_documento_id', 'descripcion'),
@@ -63,7 +63,7 @@ $this->registerJs($search);
                 'attribute' => 'tipo_lector_id',
                 'label' => Yii::t('app', 'Tipo Lector'),
                 'value' => function($model){                   
-                    return $model->tipoLector->descripcion;                   
+                    return $model->tipoLector->tipo_lector_id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoLector::find()->asArray()->all(), 'tipo_lector_id', 'descripcion'),

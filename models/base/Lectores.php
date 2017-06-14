@@ -42,9 +42,7 @@ class Lectores extends \yii\db\ActiveRecord
             [['nombre', 'documento'], 'string', 'max' => 45],
             [['direccion'], 'string', 'max' => 70],
             [['telefono'], 'string', 'max' => 15],
-            [['mail'], 'string', 'max' => 50],
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
+            [['mail'], 'string', 'max' => 50]
         ];
     }
     
@@ -57,30 +55,19 @@ class Lectores extends \yii\db\ActiveRecord
     }
 
     /**
-     * 
-     * @return string
-     * overwrite function optimisticLock
-     * return string name of field are used to stored optimistic lock 
-     * 
-     */
-    public function optimisticLock() {
-        return 'lock';
-    }
-
-    /**
      * @inheritdoc
      */
     public function attributeLabels()
     {
         return [
-            'lectores_id' => Yii::t('app', 'Lectores'),
+            'lectores_id' => Yii::t('app', 'Lectores ID'),
             'nombre' => Yii::t('app', 'Nombre'),
             'documento' => Yii::t('app', 'Documento'),
-            'tipo_lector_id' => Yii::t('app', 'Tipo de Lector'),
-            'tipo_documento_id' => Yii::t('app', 'Tipo de Documento'),
-            'direccion' => Yii::t('app', 'Dirección'),
-            'telefono' => Yii::t('app', 'Teléfono'),
-            'mail' => Yii::t('app', 'Correo Eléctronico'),
+            'tipo_lector_id' => Yii::t('app', 'Tipo Lector ID'),
+            'tipo_documento_id' => Yii::t('app', 'Tipo Documento ID'),
+            'direccion' => Yii::t('app', 'Direccion'),
+            'telefono' => Yii::t('app', 'Telefono'),
+            'mail' => Yii::t('app', 'Mail'),
         ];
     }
     

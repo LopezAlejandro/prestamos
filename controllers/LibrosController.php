@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Lectores;
-use app\models\LectoresSearch;
+use app\models\Libros;
+use app\models\LibrosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * LectoresController implements the CRUD actions for Lectores model.
+ * LibrosController implements the CRUD actions for Libros model.
  */
-class LectoresController extends Controller
+class LibrosController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class LectoresController extends Controller
     }
 
     /**
-     * Lists all Lectores models.
+     * Lists all Libros models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new LectoresSearch();
+        $searchModel = new LibrosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,33 +42,37 @@ class LectoresController extends Controller
     }
 
     /**
-     * Displays a single Lectores model.
+     * Displays a single Libros model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $providerAutorHasLibros = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->autorHasLibros,
+        ]);
         $providerPrestamos = new \yii\data\ArrayDataProvider([
             'allModels' => $model->prestamos,
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'providerAutorHasLibros' => $providerAutorHasLibros,
             'providerPrestamos' => $providerPrestamos,
         ]);
     }
 
     /**
-     * Creates a new Lectores model.
+     * Creates a new Libros model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Lectores();
+        $model = new Libros();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->lectores_id]);
+            return $this->redirect(['view', 'id' => $model->libros_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -77,7 +81,7 @@ class LectoresController extends Controller
     }
 
     /**
-     * Updates an existing Lectores model.
+     * Updates an existing Libros model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +91,7 @@ class LectoresController extends Controller
         $model = $this->findModel($id);
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->lectores_id]);
+            return $this->redirect(['view', 'id' => $model->libros_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -96,7 +100,7 @@ class LectoresController extends Controller
     }
 
     /**
-     * Deletes an existing Lectores model.
+     * Deletes an existing Libros model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,18 +114,22 @@ class LectoresController extends Controller
     
     /**
      * 
-     * Export Lectores information into PDF format.
+     * Export Libros information into PDF format.
      * @param integer $id
      * @return mixed
      */
     public function actionPdf($id) {
         $model = $this->findModel($id);
+        $providerAutorHasLibros = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->autorHasLibros,
+        ]);
         $providerPrestamos = new \yii\data\ArrayDataProvider([
             'allModels' => $model->prestamos,
         ]);
 
         $content = $this->renderAjax('_pdf', [
             'model' => $model,
+            'providerAutorHasLibros' => $providerAutorHasLibros,
             'providerPrestamos' => $providerPrestamos,
         ]);
 
@@ -145,16 +153,36 @@ class LectoresController extends Controller
 
     
     /**
-     * Finds the Lectores model based on its primary key value.
+     * Finds the Libros model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Lectores the loaded model
+     * @return Libros the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Lectores::findOne($id)) !== null) {
+        if (($model = Libros::findOne($id)) !== null) {
             return $model;
+        } else {
+            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
+    * for AutorHasLibros
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddAutorHasLibros()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('AutorHasLibros');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formAutorHasLibros', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }

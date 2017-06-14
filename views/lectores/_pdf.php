@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
 <?php 
     $gridColumn = [
-        'lectores_id',
+        ['attribute' => 'lectores_id', 'visible' => false],
         'nombre',
         'documento',
         [
@@ -41,6 +41,35 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => $gridColumn
     ]); 
+?>
+    </div>
+    
+    <div class="row">
+<?php
+if($providerPrestamos->totalCount){
+    $gridColumnPrestamos = [
+        ['class' => 'yii\grid\SerialColumn'],
+        'prestamos_id',
+        'extension',
+        'fecha_devolucion',
+        ['attribute' => 'lectores_id', 'visible' => false],
+        [
+                'attribute' => 'libros.libros_id',
+                'label' => Yii::t('app', 'Libros')
+            ],
+        'activo',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerPrestamos,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => Html::encode(Yii::t('app', 'Prestamos')),
+        ],
+        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
+        'toggleData' => false,
+        'columns' => $gridColumnPrestamos
+    ]);
+}
 ?>
     </div>
 </div>

@@ -19,7 +19,7 @@ use kartik\grid\GridView;
     <div class="row">
 <?php 
     $gridColumn = [
-        'lectores_id',
+        ['attribute' => 'lectores_id', 'visible' => false],
         'nombre',
         'documento',
         [
