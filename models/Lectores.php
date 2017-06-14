@@ -35,14 +35,14 @@ class Lectores extends BaseLectores
     public function attributeHints()
     {
         return [
-            'lectores_id' => Yii::t('app', 'Lectores'),
+            'lectores_id' => Yii::t('app', 'Lectores ID'),
             'nombre' => Yii::t('app', 'Nombre'),
             'documento' => Yii::t('app', 'Documento'),
-            'tipo_lector_id' => Yii::t('app', 'Tipo de Lector'),
-            'tipo_documento_id' => Yii::t('app', 'Tipo de Documento'),
-            'direccion' => Yii::t('app', 'Dirección'),
-            'telefono' => Yii::t('app', 'Teléfono'),
-            'mail' => Yii::t('app', 'Correo Electrónico'),
+            'tipo_lector_id' => Yii::t('app', 'Tipo Lector ID'),
+            'tipo_documento_id' => Yii::t('app', 'Tipo Documento ID'),
+            'direccion' => Yii::t('app', 'Direccion'),
+            'telefono' => Yii::t('app', 'Telefono'),
+            'mail' => Yii::t('app', 'Mail'),
         ];
     }
 }

@@ -14,24 +14,24 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->errorSummary($model); ?>
-<!--
+
     <?= $form->field($model, 'lectores_id')->textInput(['placeholder' => 'Lectores']) ?>
--->
-    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true, 'placeholder' => 'Nombre y Apellido']) ?>
-	 
-	 <?= $form->field($model, 'tipo_documento_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoDocumento::find()->orderBy('tipo_documento_id')->asArray()->all(), 'tipo_documento_id', 'descripcion'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose Tipo documento')],
+
+    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true, 'placeholder' => 'Nombre']) ?>
+
+    <?= $form->field($model, 'documento')->textInput(['maxlength' => true, 'placeholder' => 'Documento']) ?>
+
+    <?= $form->field($model, 'tipo_lector_id')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoLector::find()->orderBy('tipo_lector_id')->asArray()->all(), 'tipo_lector_id', 'tipo_lector_id'),
+        'options' => ['placeholder' => Yii::t('app', 'Choose Tipo lector')],
         'pluginOptions' => [
             'allowClear' => true
         ],
     ]); ?>
 
-    <?= $form->field($model, 'documento')->textInput(['maxlength' => true, 'placeholder' => 'Nro de Documento']) ?>
-
-    <?= $form->field($model, 'tipo_lector_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoLector::find()->orderBy('tipo_lector_id')->asArray()->all(), 'tipo_lector_id', 'descripcion'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose Tipo lector')],
+    <?= $form->field($model, 'tipo_documento_id')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoDocumento::find()->orderBy('tipo_documento_id')->asArray()->all(), 'tipo_documento_id', 'tipo_documento_id'),
+        'options' => ['placeholder' => Yii::t('app', 'Choose Tipo documento')],
         'pluginOptions' => [
             'allowClear' => true
         ],

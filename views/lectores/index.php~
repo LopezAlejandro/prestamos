@@ -43,17 +43,29 @@ $this->registerJs($search);
             'headerOptions' => ['class' => 'kartik-sheet-style'],
             'expandOneOnly' => true
         ],
-        'lectores_id',
+        [
+                'attribute' => 'lectores_id',
+                'label' => Yii::t('app', 'Lectores'),
+                'value' => function($model){                   
+                    return $model->lectores->prestamos_id;                   
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Prestamos::find()->asArray()->all(), 'lectores_id', 'prestamos_id'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Prestamos', 'id' => 'grid-lectores-search-lectores_id']
+            ],
         'nombre',
         'documento',
         [
                 'attribute' => 'tipo_lector_id',
                 'label' => Yii::t('app', 'Tipo Lector'),
                 'value' => function($model){                   
-                    return $model->tipoLector->descripcion;                   
+                    return $model->tipoLector->tipo_lector_id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoLector::find()->asArray()->all(), 'tipo_lector_id', 'descripcion'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoLector::find()->asArray()->all(), 'tipo_lector_id', 'tipo_lector_id'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
@@ -63,10 +75,10 @@ $this->registerJs($search);
                 'attribute' => 'tipo_documento_id',
                 'label' => Yii::t('app', 'Tipo Documento'),
                 'value' => function($model){                   
-                    return $model->tipoDocumento->descripcion;                   
+                    return $model->tipoDocumento->tipo_documento_id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoDocumento::find()->asArray()->all(), 'tipo_documento_id', 'descripcion'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoDocumento::find()->asArray()->all(), 'tipo_documento_id', 'tipo_documento_id'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],

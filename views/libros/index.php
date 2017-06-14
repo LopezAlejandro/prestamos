@@ -1,14 +1,14 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\LectoresSearch */
+/* @var $searchModel app\models\LibrosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-$this->title = Yii::t('app', 'Lectores');
+$this->title = Yii::t('app', 'Libros');
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
 	$('.search-form').toggle(1000);
@@ -16,13 +16,13 @@ $search = "$('.search-button').click(function(){
 });";
 $this->registerJs($search);
 ?>
-<div class="lectores-index">
+<div class="libros-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Lectores'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Libros'), ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
     <div class="search-form" style="display:none">
@@ -43,38 +43,52 @@ $this->registerJs($search);
             'headerOptions' => ['class' => 'kartik-sheet-style'],
             'expandOneOnly' => true
         ],
-        'lectores_id',
-        'nombre',
-        'documento',
+        'libros_id',
+        'titulo',
+        'editorial',
+        'ano',
+        'edicion',
+        'ejemplar',
+        'nro_libro',
         [
-                'attribute' => 'tipo_lector_id',
-                'label' => Yii::t('app', 'Tipo Lector'),
+                'attribute' => 'estado_id',
+                'label' => Yii::t('app', 'Estado'),
                 'value' => function($model){                   
-                    return $model->tipoLector->tipo_lector_id;                   
+                    return $model->estado->estado_id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoLector::find()->asArray()->all(), 'tipo_lector_id', 'tipo_lector_id'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Estado::find()->asArray()->all(), 'estado_id', 'estado_id'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => 'Tipo lector', 'id' => 'grid-lectores-search-tipo_lector_id']
+                'filterInputOptions' => ['placeholder' => 'Estado', 'id' => 'grid-libros-search-estado_id']
             ],
         [
-                'attribute' => 'tipo_documento_id',
-                'label' => Yii::t('app', 'Tipo Documento'),
+                'attribute' => 'deposito_id',
+                'label' => Yii::t('app', 'Deposito'),
                 'value' => function($model){                   
-                    return $model->tipoDocumento->tipo_documento_id;                   
+                    return $model->deposito->deposito_id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoDocumento::find()->asArray()->all(), 'tipo_documento_id', 'tipo_documento_id'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Deposito::find()->asArray()->all(), 'deposito_id', 'deposito_id'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => 'Tipo documento', 'id' => 'grid-lectores-search-tipo_documento_id']
+                'filterInputOptions' => ['placeholder' => 'Deposito', 'id' => 'grid-libros-search-deposito_id']
             ],
-        'direccion',
-        'telefono',
-        'mail',
+        [
+                'attribute' => 'tipo_libro_id',
+                'label' => Yii::t('app', 'Tipo Libro'),
+                'value' => function($model){                   
+                    return $model->tipoLibro->tipo_libro_id;                   
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoLibro::find()->asArray()->all(), 'tipo_libro_id', 'tipo_libro_id'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Tipo libro', 'id' => 'grid-libros-search-tipo_libro_id']
+            ],
         [
             'class' => 'yii\grid\ActionColumn',
         ],
@@ -85,7 +99,7 @@ $this->registerJs($search);
         'filterModel' => $searchModel,
         'columns' => $gridColumn,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-lectores']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-libros']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),

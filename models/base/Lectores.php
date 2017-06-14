@@ -24,7 +24,6 @@ use yii\behaviors\BlameableBehavior;
  *
  * @property \app\models\TipoDocumento $tipoDocumento
  * @property \app\models\TipoLector $tipoLector
- * @property \app\models\Prestamos[] $prestamos
  */
 class Lectores extends \yii\db\ActiveRecord
 {
@@ -73,14 +72,14 @@ class Lectores extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'lectores_id' => Yii::t('app', 'Lectores'),
+            'lectores_id' => Yii::t('app', 'Lectores ID'),
             'nombre' => Yii::t('app', 'Nombre'),
             'documento' => Yii::t('app', 'Documento'),
-            'tipo_lector_id' => Yii::t('app', 'Tipo de Lector'),
-            'tipo_documento_id' => Yii::t('app', 'Tipo de Documento'),
-            'direccion' => Yii::t('app', 'Dirección'),
-            'telefono' => Yii::t('app', 'Teléfono'),
-            'mail' => Yii::t('app', 'Correo Eléctronico'),
+            'tipo_lector_id' => Yii::t('app', 'Tipo Lector ID'),
+            'tipo_documento_id' => Yii::t('app', 'Tipo Documento ID'),
+            'direccion' => Yii::t('app', 'Direccion'),
+            'telefono' => Yii::t('app', 'Telefono'),
+            'mail' => Yii::t('app', 'Mail'),
         ];
     }
     
@@ -100,14 +99,6 @@ class Lectores extends \yii\db\ActiveRecord
         return $this->hasOne(\app\models\TipoLector::className(), ['tipo_lector_id' => 'tipo_lector_id']);
     }
         
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPrestamos()
-    {
-        return $this->hasMany(\app\models\Prestamos::className(), ['lectores_id' => 'lectores_id']);
-    }
-    
 /**
      * @inheritdoc
      * @return array mixed
