@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2017 at 04:30 PM
+-- Generation Time: Jun 14, 2017 at 07:21 PM
 -- Server version: 10.1.23-MariaDB
 -- PHP Version: 7.1.5
 
@@ -89,6 +89,13 @@ CREATE TABLE `lectores` (
   `updated_by` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `lectores`
+--
+
+INSERT INTO `lectores` (`lectores_id`, `nombre`, `documento`, `tipo_lector_id`, `tipo_documento_id`, `direccion`, `telefono`, `mail`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, 'Alejandro Lopez', '18225744', 4, 1, 'Jose Hernandez 2248', '36599872', 'lopalejandro@gmail.com', '2017-06-14 16:03:56', '2017-06-14 16:03:56', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -105,7 +112,11 @@ CREATE TABLE `libros` (
   `nro_libro` int(11) NOT NULL,
   `estado_id` smallint(6) NOT NULL,
   `deposito_id` smallint(6) NOT NULL,
-  `tipo_libro_id` smallint(6) NOT NULL
+  `tipo_libro_id` smallint(6) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -143,7 +154,11 @@ CREATE TABLE `prestamos` (
   `fecha_devolucion` date NOT NULL,
   `lectores_id` int(11) NOT NULL,
   `libros_id` int(11) NOT NULL,
-  `activo` tinyint(1) NOT NULL
+  `activo` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -157,6 +172,14 @@ CREATE TABLE `tipo_documento` (
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `tipo_documento`
+--
+
+INSERT INTO `tipo_documento` (`tipo_documento_id`, `descripcion`) VALUES
+(1, 'DNI'),
+(2, 'Pasaporte');
+
 -- --------------------------------------------------------
 
 --
@@ -168,6 +191,18 @@ CREATE TABLE `tipo_lector` (
   `descripcion` varchar(45) NOT NULL,
   `prestamo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tipo_lector`
+--
+
+INSERT INTO `tipo_lector` (`tipo_lector_id`, `descripcion`, `prestamo`) VALUES
+(1, 'Alumno FADU', 7),
+(2, 'Alumno CBC', 7),
+(3, 'Docente', 7),
+(4, 'No Docente', 7),
+(5, 'Autoridad', 7),
+(6, 'Otras Bibliotecas', 7);
 
 -- --------------------------------------------------------
 
@@ -280,7 +315,7 @@ ALTER TABLE `autor`
 -- AUTO_INCREMENT for table `lectores`
 --
 ALTER TABLE `lectores`
-  MODIFY `lectores_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `lectores_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `libros`
 --
@@ -300,12 +335,12 @@ ALTER TABLE `prestamos`
 -- AUTO_INCREMENT for table `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
-  MODIFY `tipo_documento_id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `tipo_documento_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tipo_lector`
 --
 ALTER TABLE `tipo_lector`
-  MODIFY `tipo_lector_id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `tipo_lector_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
