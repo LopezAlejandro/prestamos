@@ -18,7 +18,7 @@ class Lectores extends BaseLectores
         return array_replace_recursive(parent::rules(),
 	    [
             [['nombre', 'documento', 'tipo_lector_id', 'tipo_documento_id'], 'required'],
-            [['tipo_lector_id', 'tipo_documento_id'], 'integer'],
+            [['tipo_lector_id', 'tipo_documento_id', 'estado'], 'integer'],
             [['created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
             [['nombre', 'documento'], 'string', 'max' => 45],
             [['direccion'], 'string', 'max' => 70],
@@ -41,6 +41,7 @@ class Lectores extends BaseLectores
             'direccion' => Yii::t('app', 'Direccion'),
             'telefono' => Yii::t('app', 'Telefono'),
             'mail' => Yii::t('app', 'Mail'),
+            'estado' => Yii::t('app', 'Estado'),
         ];
     }
 }

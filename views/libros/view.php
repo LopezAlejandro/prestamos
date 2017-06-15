@@ -107,8 +107,9 @@ if($providerPrestamos->totalCount){
                 'attribute' => 'lectores.lectores_id',
                 'label' => Yii::t('app', 'Lectores')
             ],
-            ['attribute' => 'libros_id', 'visible' => false],
             'activo',
+            'nro_prestamo',
+            ['attribute' => 'libros_id', 'visible' => false],
     ];
     echo Gridview::widget([
         'dataProvider' => $providerPrestamos,

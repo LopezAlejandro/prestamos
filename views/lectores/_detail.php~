@@ -21,20 +21,20 @@ use kartik\grid\GridView;
     $gridColumn = [
         ['attribute' => 'lectores_id', 'visible' => false],
         'nombre',
-        [
-            'attribute' => 'tipoDocumento.descripcion',
-            'label' => Yii::t('app', 'Tipo Documento'),
-        ],
         'documento',
         [
-            'attribute' => 'tipoLector.descripcion',
+            'attribute' => 'tipoLector.tipo_lector_id',
             'label' => Yii::t('app', 'Tipo Lector'),
+        ],
+        [
+            'attribute' => 'tipoDocumento.tipo_documento_id',
+            'label' => Yii::t('app', 'Tipo Documento'),
         ],
         'direccion',
         'telefono',
         'mail',
         [
-            'attribute' => 'estado0.descripcion',
+            'attribute' => 'estado0.estado_id',
             'label' => Yii::t('app', 'Estado'),
         ],
     ];

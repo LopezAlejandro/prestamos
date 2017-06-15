@@ -30,7 +30,7 @@ $this->registerJs($search);
     </div>
     <?php 
     $gridColumn = [
-        ['class' => 'yii\grid\SerialColumn'],
+       // ['class' => 'yii\grid\SerialColumn'],
         [
             'class' => 'kartik\grid\ExpandRowColumn',
             'width' => '50px',
@@ -76,6 +76,19 @@ $this->registerJs($search);
         'direccion',
         'telefono',
         'mail',
+        [
+                'attribute' => 'estado',
+                'label' => Yii::t('app', 'Estado'),
+                'value' => function($model){                   
+                    return $model->estado0->estado_id;                   
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\EstadoLector::find()->asArray()->all(), 'estado_id', 'descripcion'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Estado lector', 'id' => 'grid-lectores-search-estado']
+            ],
         [
             'class' => 'yii\grid\ActionColumn',
         ],

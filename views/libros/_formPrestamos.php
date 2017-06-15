@@ -56,6 +56,7 @@ echo TabularForm::widget([
                 'style' => 'position : relative; margin-top : -9px'
             ]
         ],
+        'nro_prestamo' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',
             'label' => '',

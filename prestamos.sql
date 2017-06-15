@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 14, 2017 at 07:21 PM
+-- Generation Time: Jun 15, 2017 at 03:22 PM
 -- Server version: 10.1.23-MariaDB
 -- PHP Version: 7.1.5
 
@@ -57,6 +57,14 @@ CREATE TABLE `deposito` (
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `deposito`
+--
+
+INSERT INTO `deposito` (`deposito_id`, `descripcion`) VALUES
+(1, 'Depósito 1'),
+(2, 'Depósito 2');
+
 -- --------------------------------------------------------
 
 --
@@ -67,6 +75,35 @@ CREATE TABLE `estado` (
   `estado_id` smallint(6) NOT NULL,
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `estado`
+--
+
+INSERT INTO `estado` (`estado_id`, `descripcion`) VALUES
+(1, 'Disponible'),
+(2, 'Prestado'),
+(3, 'En reparación'),
+(4, 'De baja');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `estado_lector`
+--
+
+CREATE TABLE `estado_lector` (
+  `estado_id` int(11) NOT NULL,
+  `descripcion` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `estado_lector`
+--
+
+INSERT INTO `estado_lector` (`estado_id`, `descripcion`) VALUES
+(1, 'Activo'),
+(2, 'Sancionado');
 
 -- --------------------------------------------------------
 
@@ -86,15 +123,17 @@ CREATE TABLE `lectores` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `created_by` datetime DEFAULT NULL,
-  `updated_by` datetime DEFAULT NULL
+  `updated_by` datetime DEFAULT NULL,
+  `estado` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `lectores`
 --
 
-INSERT INTO `lectores` (`lectores_id`, `nombre`, `documento`, `tipo_lector_id`, `tipo_documento_id`, `direccion`, `telefono`, `mail`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 'Alejandro Lopez', '18225744', 4, 1, 'Jose Hernandez 2248', '36599872', 'lopalejandro@gmail.com', '2017-06-14 16:03:56', '2017-06-14 16:03:56', NULL, NULL);
+INSERT INTO `lectores` (`lectores_id`, `nombre`, `documento`, `tipo_lector_id`, `tipo_documento_id`, `direccion`, `telefono`, `mail`, `created_at`, `updated_at`, `created_by`, `updated_by`, `estado`) VALUES
+(1, 'Alejandro Lopez', '18225744', 4, 1, 'Jose Hernandez 2248', '36599872', 'lopalejandro@gmail.com', '2017-06-14 16:03:56', '2017-06-14 16:03:56', NULL, NULL, 1),
+(2, 'Marisa Concheso', '21116047', 1, 1, '', '', '', '2017-06-15 11:45:22', '2017-06-15 11:45:22', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -153,12 +192,13 @@ CREATE TABLE `prestamos` (
   `extension` tinyint(1) NOT NULL,
   `fecha_devolucion` date NOT NULL,
   `lectores_id` int(11) NOT NULL,
-  `libros_id` int(11) NOT NULL,
   `activo` tinyint(1) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `updated_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nro_prestamo` int(11) NOT NULL,
+  `libros_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -216,6 +256,15 @@ CREATE TABLE `tipo_libro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `tipo_libro`
+--
+
+INSERT INTO `tipo_libro` (`tipo_libro_id`, `descripcion`) VALUES
+(1, 'Préstamo en sala'),
+(2, 'Préstamo de semana'),
+(3, 'Préstamo de Fin de Semana');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -246,12 +295,19 @@ ALTER TABLE `estado`
   ADD PRIMARY KEY (`estado_id`);
 
 --
+-- Indexes for table `estado_lector`
+--
+ALTER TABLE `estado_lector`
+  ADD PRIMARY KEY (`estado_id`);
+
+--
 -- Indexes for table `lectores`
 --
 ALTER TABLE `lectores`
   ADD PRIMARY KEY (`lectores_id`),
   ADD KEY `lectores_tipo_documento_FK` (`tipo_documento_id`),
-  ADD KEY `lectores_tipo_lector_FK` (`tipo_lector_id`);
+  ADD KEY `lectores_tipo_lector_FK` (`tipo_lector_id`),
+  ADD KEY `lectores_estado_lector_FK` (`estado`);
 
 --
 -- Indexes for table `libros`
@@ -281,8 +337,9 @@ ALTER TABLE `multas_has_prestamos`
 --
 ALTER TABLE `prestamos`
   ADD PRIMARY KEY (`prestamos_id`),
-  ADD KEY `prestamos_libros_FK` (`libros_id`),
-  ADD KEY `prestamos_lectores_FK` (`lectores_id`);
+  ADD UNIQUE KEY `prestamos_UN` (`nro_prestamo`),
+  ADD KEY `prestamos_lectores_FK` (`lectores_id`),
+  ADD KEY `prestamos_libros_FK` (`libros_id`);
 
 --
 -- Indexes for table `tipo_documento`
@@ -312,10 +369,15 @@ ALTER TABLE `tipo_libro`
 ALTER TABLE `autor`
   MODIFY `autor_id` int(6) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `estado_lector`
+--
+ALTER TABLE `estado_lector`
+  MODIFY `estado_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `lectores`
 --
 ALTER TABLE `lectores`
-  MODIFY `lectores_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `lectores_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `libros`
 --
@@ -356,6 +418,7 @@ ALTER TABLE `autor_has_libros`
 -- Constraints for table `lectores`
 --
 ALTER TABLE `lectores`
+  ADD CONSTRAINT `lectores_estado_lector_FK` FOREIGN KEY (`estado`) REFERENCES `estado_lector` (`estado_id`),
   ADD CONSTRAINT `lectores_tipo_documento_FK` FOREIGN KEY (`tipo_documento_id`) REFERENCES `tipo_documento` (`tipo_documento_id`),
   ADD CONSTRAINT `lectores_tipo_lector_FK` FOREIGN KEY (`tipo_lector_id`) REFERENCES `tipo_lector` (`tipo_lector_id`);
 

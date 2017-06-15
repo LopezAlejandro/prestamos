@@ -16,6 +16,7 @@ use yii\data\ArrayDataProvider;
                 'label' => Yii::t('app', 'Lectores')
             ],
         'activo',
+        'nro_prestamo',
         [
             'class' => 'yii\grid\ActionColumn',
             'controller' => 'prestamos'

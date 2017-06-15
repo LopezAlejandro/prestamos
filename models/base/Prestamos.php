@@ -13,12 +13,13 @@ use yii\behaviors\BlameableBehavior;
  * @property integer $extension
  * @property string $fecha_devolucion
  * @property integer $lectores_id
- * @property integer $libros_id
  * @property integer $activo
  * @property string $created_at
  * @property string $updated_at
  * @property string $created_by
  * @property string $updated_by
+ * @property integer $nro_prestamo
+ * @property integer $libros_id
  *
  * @property \app\models\MultasHasPrestamos[] $multasHasPrestamos
  * @property \app\models\Multas[] $multasMultas
@@ -35,11 +36,10 @@ class Prestamos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['extension', 'fecha_devolucion', 'lectores_id', 'libros_id', 'activo'], 'required'],
-            [['extension', 'lectores_id', 'libros_id', 'activo'], 'integer'],
+            [['extension', 'fecha_devolucion', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'required'],
+            [['extension', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'integer'],
             [['fecha_devolucion', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
+            [['nro_prestamo'], 'unique']
         ];
     }
     
@@ -52,17 +52,6 @@ class Prestamos extends \yii\db\ActiveRecord
     }
 
     /**
-     * 
-     * @return string
-     * overwrite function optimisticLock
-     * return string name of field are used to stored optimistic lock 
-     * 
-     */
-    public function optimisticLock() {
-        return 'lock';
-    }
-
-    /**
      * @inheritdoc
      */
     public function attributeLabels()
@@ -72,8 +61,9 @@ class Prestamos extends \yii\db\ActiveRecord
             'extension' => Yii::t('app', 'Extension'),
             'fecha_devolucion' => Yii::t('app', 'Fecha Devolucion'),
             'lectores_id' => Yii::t('app', 'Lectores ID'),
-            'libros_id' => Yii::t('app', 'Libros ID'),
             'activo' => Yii::t('app', 'Activo'),
+            'nro_prestamo' => Yii::t('app', 'Nro Prestamo'),
+            'libros_id' => Yii::t('app', 'Libros ID'),
         ];
     }
     

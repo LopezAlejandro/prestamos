@@ -39,15 +39,17 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'libros_id')->widget(\kartik\widgets\Select2::classname(), [
+    <?= $form->field($model, 'activo')->checkbox() ?>
+
+    <?php /* echo $form->field($model, 'nro_prestamo')->textInput(['placeholder' => 'Nro Prestamo']) */ ?>
+
+    <?php /* echo $form->field($model, 'libros_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('libros_id')->asArray()->all(), 'libros_id', 'libros_id'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Libros')],
         'pluginOptions' => [
             'allowClear' => true
         ],
-    ]); ?>
-
-    <?php /* echo $form->field($model, 'activo')->checkbox() */ ?>
+    ]); */ ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

@@ -11,11 +11,12 @@ use yii\data\ArrayDataProvider;
         'prestamos_id',
         'extension',
         'fecha_devolucion',
+        'activo',
+        'nro_prestamo',
         [
                 'attribute' => 'libros.libros_id',
                 'label' => Yii::t('app', 'Libros')
             ],
-        'activo',
         [
             'class' => 'yii\grid\ActionColumn',
             'controller' => 'prestamos'

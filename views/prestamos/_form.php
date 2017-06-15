@@ -47,6 +47,10 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
+    <?= $form->field($model, 'activo')->checkbox() ?>
+
+    <?= $form->field($model, 'nro_prestamo')->textInput(['placeholder' => 'Nro Prestamo']) ?>
+
     <?= $form->field($model, 'libros_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('libros_id')->asArray()->all(), 'libros_id', 'libros_id'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Libros')],
@@ -54,8 +58,6 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
-
-    <?= $form->field($model, 'activo')->checkbox() ?>
 
     <?php
     $forms = [

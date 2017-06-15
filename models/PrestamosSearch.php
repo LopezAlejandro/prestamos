@@ -18,7 +18,7 @@ use app\models\Prestamos;
     public function rules()
     {
         return [
-            [['prestamos_id', 'extension', 'lectores_id', 'libros_id', 'activo'], 'integer'],
+            [['prestamos_id', 'extension', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'integer'],
             [['fecha_devolucion', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
         ];
     }
@@ -60,12 +60,13 @@ use app\models\Prestamos;
             'extension' => $this->extension,
             'fecha_devolucion' => $this->fecha_devolucion,
             'lectores_id' => $this->lectores_id,
-            'libros_id' => $this->libros_id,
             'activo' => $this->activo,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
+            'nro_prestamo' => $this->nro_prestamo,
+            'libros_id' => $this->libros_id,
         ]);
 
         return $dataProvider;

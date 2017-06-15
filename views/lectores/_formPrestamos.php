@@ -41,6 +41,12 @@ echo TabularForm::widget([
                 ],
             ]
         ],
+        'activo' => ['type' => TabularForm::INPUT_CHECKBOX,
+            'options' => [
+                'style' => 'position : relative; margin-top : -9px'
+            ]
+        ],
+        'nro_prestamo' => ['type' => TabularForm::INPUT_TEXT],
         'libros_id' => [
             'label' => 'Libros',
             'type' => TabularForm::INPUT_WIDGET,
@@ -50,11 +56,6 @@ echo TabularForm::widget([
                 'options' => ['placeholder' => Yii::t('app', 'Choose Libros')],
             ],
             'columnOptions' => ['width' => '200px']
-        ],
-        'activo' => ['type' => TabularForm::INPUT_CHECKBOX,
-            'options' => [
-                'style' => 'position : relative; margin-top : -9px'
-            ]
         ],
         'del' => [
             'type' => 'raw',

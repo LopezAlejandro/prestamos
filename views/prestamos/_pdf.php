@@ -29,11 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'lectores.lectores_id',
                 'label' => Yii::t('app', 'Lectores')
             ],
+        'activo',
+        'nro_prestamo',
         [
                 'attribute' => 'libros.libros_id',
                 'label' => Yii::t('app', 'Libros')
             ],
-        'activo',
     ];
     echo DetailView::widget([
         'model' => $model,

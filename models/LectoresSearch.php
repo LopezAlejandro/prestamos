@@ -18,7 +18,7 @@ use app\models\Lectores;
     public function rules()
     {
         return [
-            [['lectores_id', 'tipo_lector_id', 'tipo_documento_id'], 'integer'],
+            [['lectores_id', 'tipo_lector_id', 'tipo_documento_id', 'estado'], 'integer'],
             [['nombre', 'documento', 'direccion', 'telefono', 'mail', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
         ];
     }
@@ -63,6 +63,7 @@ use app\models\Lectores;
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
+            'estado' => $this->estado,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])

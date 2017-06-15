@@ -26,15 +26,15 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'lectores_id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true, 'placeholder' => 'Nombre']) ?>
-	 
-	 <?= $form->field($model, 'tipo_documento_id')->widget(\kartik\widgets\Select2::classname(), [
+    
+    <?= $form->field($model, 'tipo_documento_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoDocumento::find()->orderBy('tipo_documento_id')->asArray()->all(), 'tipo_documento_id', 'descripcion'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Tipo documento')],
         'pluginOptions' => [
             'allowClear' => true
         ],
     ]); ?>
-    
+
     <?= $form->field($model, 'documento')->textInput(['maxlength' => true, 'placeholder' => 'Documento']) ?>
 
     <?= $form->field($model, 'tipo_lector_id')->widget(\kartik\widgets\Select2::classname(), [
@@ -50,6 +50,14 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'telefono')->textInput(['maxlength' => true, 'placeholder' => 'Telefono']) ?>
 
     <?= $form->field($model, 'mail')->textInput(['maxlength' => true, 'placeholder' => 'Mail']) ?>
+
+    <?= $form->field($model, 'estado')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\EstadoLector::find()->orderBy('estado_id')->asArray()->all(), 'estado_id', 'descripcion'),
+        'options' => ['placeholder' => Yii::t('app', 'Choose Estado lector')],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
 
     <?php
     $forms = [

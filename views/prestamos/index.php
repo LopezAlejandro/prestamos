@@ -59,6 +59,8 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Lectores', 'id' => 'grid-prestamos-search-lectores_id']
             ],
+        'activo',
+        'nro_prestamo',
         [
                 'attribute' => 'libros_id',
                 'label' => Yii::t('app', 'Libros'),
@@ -72,7 +74,6 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Libros', 'id' => 'grid-prestamos-search-libros_id']
             ],
-        'activo',
         [
             'class' => 'yii\grid\ActionColumn',
         ],

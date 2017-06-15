@@ -31,15 +31,15 @@ class Libros extends BaseLibros
     {
         return [
             'libros_id' => Yii::t('app', 'Libros ID'),
-            'titulo' => Yii::t('app', 'Título'),
+            'titulo' => Yii::t('app', 'Titulo'),
             'editorial' => Yii::t('app', 'Editorial'),
-            'ano' => Yii::t('app', 'Año'),
-            'edicion' => Yii::t('app', 'Edición'),
+            'ano' => Yii::t('app', 'Ano'),
+            'edicion' => Yii::t('app', 'Edicion'),
             'ejemplar' => Yii::t('app', 'Ejemplar'),
-            'nro_libro' => Yii::t('app', 'Nro de Libro'),
-            'estado_id' => Yii::t('app', 'Estado'),
-            'deposito_id' => Yii::t('app', 'Depósito'),
-            'tipo_libro_id' => Yii::t('app', 'Tipo de Libro'),
+            'nro_libro' => Yii::t('app', 'Nro Libro'),
+            'estado_id' => Yii::t('app', 'Estado ID'),
+            'deposito_id' => Yii::t('app', 'Deposito ID'),
+            'tipo_libro_id' => Yii::t('app', 'Tipo Libro ID'),
         ];
     }
 }

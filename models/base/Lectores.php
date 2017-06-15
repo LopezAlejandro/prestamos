@@ -21,7 +21,9 @@ use yii\behaviors\BlameableBehavior;
  * @property string $updated_at
  * @property string $created_by
  * @property string $updated_by
+ * @property integer $estado
  *
+ * @property \app\models\EstadoLector $estado0
  * @property \app\models\TipoDocumento $tipoDocumento
  * @property \app\models\TipoLector $tipoLector
  * @property \app\models\Prestamos[] $prestamos
@@ -37,7 +39,7 @@ class Lectores extends \yii\db\ActiveRecord
     {
         return [
             [['nombre', 'documento', 'tipo_lector_id', 'tipo_documento_id'], 'required'],
-            [['tipo_lector_id', 'tipo_documento_id'], 'integer'],
+            [['tipo_lector_id', 'tipo_documento_id', 'estado'], 'integer'],
             [['created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
             [['nombre', 'documento'], 'string', 'max' => 45],
             [['direccion'], 'string', 'max' => 70],
@@ -68,9 +70,18 @@ class Lectores extends \yii\db\ActiveRecord
             'direccion' => Yii::t('app', 'Direccion'),
             'telefono' => Yii::t('app', 'Telefono'),
             'mail' => Yii::t('app', 'Mail'),
+            'estado' => Yii::t('app', 'Estado'),
         ];
     }
     
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEstado0()
+    {
+        return $this->hasOne(\app\models\EstadoLector::className(), ['estado_id' => 'estado']);
+    }
+        
     /**
      * @return \yii\db\ActiveQuery
      */
