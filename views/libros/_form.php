@@ -33,41 +33,41 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'libros_id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
+	 <?= $form->field($model, 'nro_libro')->textInput(['placeholder' => 'Nro Libro']) ?>
+    
     <?= $form->field($model, 'titulo')->textInput(['maxlength' => true, 'placeholder' => 'Titulo']) ?>
 
-    <?= $form->field($model, 'editorial')->textInput(['maxlength' => true, 'placeholder' => 'Editorial']) ?>
-
-    <?= $form->field($model, 'ano')->textInput(['placeholder' => 'Ano']) ?>
-
-    <?= $form->field($model, 'edicion')->textInput(['placeholder' => 'Edicion']) ?>
-
-    <?= $form->field($model, 'ejemplar')->textInput(['placeholder' => 'Ejemplar']) ?>
-
-    <?= $form->field($model, 'nro_libro')->textInput(['placeholder' => 'Nro Libro']) ?>
-
-    <?= $form->field($model, 'estado_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\Estado::find()->orderBy('estado_id')->asArray()->all(), 'estado_id', 'estado_id'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose Estado')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
-
-    <?= $form->field($model, 'deposito_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\Deposito::find()->orderBy('deposito_id')->asArray()->all(), 'deposito_id', 'deposito_id'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose Deposito')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
-
+	 <?= $form->field($model, 'ejemplar')->textInput(['placeholder' => 'Ejemplar']) ?>
+    
     <?= $form->field($model, 'tipo_libro_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoLibro::find()->orderBy('tipo_libro_id')->asArray()->all(), 'tipo_libro_id', 'tipo_libro_id'),
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoLibro::find()->orderBy('tipo_libro_id')->asArray()->all(), 'tipo_libro_id', 'descripcion'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Tipo libro')],
         'pluginOptions' => [
             'allowClear' => true
         ],
     ]); ?>
+    
+    <?= $form->field($model, 'estado_id')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Estado::find()->orderBy('estado_id')->asArray()->all(), 'estado_id', 'descripcion'),
+        'options' => ['placeholder' => Yii::t('app', 'Choose Estado')],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
+    
+    <?= $form->field($model, 'deposito_id')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Deposito::find()->orderBy('deposito_id')->asArray()->all(), 'deposito_id', 'descripcion'),
+        'options' => ['placeholder' => Yii::t('app', 'Choose Deposito')],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
+    
+    <?= $form->field($model, 'editorial')->textInput(['maxlength' => true, 'placeholder' => 'Editorial']) ?>
+
+    <?= $form->field($model, 'edicion')->textInput(['placeholder' => 'Edicion']) ?>
+
+ 	 <?= $form->field($model, 'ano')->textInput(['placeholder' => 'Ano']) ?>   
 
     <?php
     $forms = [

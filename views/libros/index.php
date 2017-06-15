@@ -44,51 +44,52 @@ $this->registerJs($search);
             'expandOneOnly' => true
         ],
         ['attribute' => 'libros_id', 'visible' => false],
-        'titulo',
-        'editorial',
-        'ano',
-        'edicion',
-        'ejemplar',
         'nro_libro',
-        [
-                'attribute' => 'estado_id',
-                'label' => Yii::t('app', 'Estado'),
-                'value' => function($model){                   
-                    return $model->estado->estado_id;                   
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Estado::find()->asArray()->all(), 'estado_id', 'estado_id'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Estado', 'id' => 'grid-libros-search-estado_id']
-            ],
-        [
-                'attribute' => 'deposito_id',
-                'label' => Yii::t('app', 'Deposito'),
-                'value' => function($model){                   
-                    return $model->deposito->deposito_id;                   
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Deposito::find()->asArray()->all(), 'deposito_id', 'deposito_id'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Deposito', 'id' => 'grid-libros-search-deposito_id']
-            ],
+        'titulo',
+        'ejemplar',
         [
                 'attribute' => 'tipo_libro_id',
                 'label' => Yii::t('app', 'Tipo Libro'),
                 'value' => function($model){                   
-                    return $model->tipoLibro->tipo_libro_id;                   
+                    return $model->tipoLibro->descripcion;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoLibro::find()->asArray()->all(), 'tipo_libro_id', 'tipo_libro_id'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoLibro::find()->asArray()->all(), 'tipo_libro_id', 'descripcion'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
                 'filterInputOptions' => ['placeholder' => 'Tipo libro', 'id' => 'grid-libros-search-tipo_libro_id']
             ],
+            [
+                'attribute' => 'estado_id',
+                'label' => Yii::t('app', 'Estado'),
+                'value' => function($model){                   
+                    return $model->estado->descripcion;                   
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Estado::find()->asArray()->all(), 'estado_id', 'descripcion'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Estado', 'id' => 'grid-libros-search-estado_id']
+            ],
+            [
+                'attribute' => 'deposito_id',
+                'label' => Yii::t('app', 'Deposito'),
+                'value' => function($model){                   
+                    return $model->deposito->descripcion;                   
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Deposito::find()->asArray()->all(), 'deposito_id', 'descripcion'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Deposito', 'id' => 'grid-libros-search-deposito_id']
+            ],
+        'editorial',
+        
+        'edicion',
+        'ano',
         [
             'class' => 'yii\grid\ActionColumn',
         ],

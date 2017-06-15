@@ -140,6 +140,7 @@ class Libros extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
+                'value' => 'admin',
             ],
         ];
     }

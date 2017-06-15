@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Libros */
 
-$this->title = $model->libros_id;
+$this->title = $model->titulo;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Libros'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= Yii::t('app', 'Libros').' '. Html::encode($this->title) ?></h2>
+            <h2><?= Yii::t('app', 'Libros').' - '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
 <?=             
@@ -45,24 +45,24 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php 
     $gridColumn = [
         ['attribute' => 'libros_id', 'visible' => false],
-        'titulo',
-        'editorial',
-        'ano',
-        'edicion',
-        'ejemplar',
         'nro_libro',
+        'titulo',
+        'ejemplar',
         [
-            'attribute' => 'estado.estado_id',
+            'attribute' => 'tipoLibro.descripcion',
+            'label' => Yii::t('app', 'Tipo Libro'),
+        ],
+        [
+            'attribute' => 'estado.descripcion',
             'label' => Yii::t('app', 'Estado'),
         ],
         [
-            'attribute' => 'deposito.deposito_id',
-            'label' => Yii::t('app', 'Deposito'),
+            'attribute' => 'deposito.descripcion',
+            'label' => Yii::t('app', 'Depósito'),
         ],
-        [
-            'attribute' => 'tipoLibro.tipo_libro_id',
-            'label' => Yii::t('app', 'Tipo Libro'),
-        ],
+        'editorial',
+        'edicion',
+        'ano',
     ];
     echo DetailView::widget([
         'model' => $model,
