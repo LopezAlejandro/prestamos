@@ -14,10 +14,10 @@ use yii\data\ArrayDataProvider;
                 'attribute' => 'autorAutor.nombre',
                 'label' => Yii::t('app', 'Nombre del Autor')
             ],
-//        [
-//            'class' => 'yii\grid\ActionColumn',
-//            'controller' => 'autor-has-libros'
-//        ],
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'controller' => 'autor-has-libros'
+        ],
     ];
     
     echo GridView::widget([

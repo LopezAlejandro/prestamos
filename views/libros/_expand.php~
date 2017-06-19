@@ -10,7 +10,7 @@ $items = [
 //        ]),
 //    ],
         [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Autores')),
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Autor Has Libros')),
         'content' => $this->render('_dataAutorHasLibros', [
             'model' => $model,
             'row' => $model->autorHasLibros,

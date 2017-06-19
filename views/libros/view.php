@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h2><?= Yii::t('app', 'Libros').' - '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
+<!--
 <?=             
              Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> ' . Yii::t('app', 'PDF'), 
                 ['pdf', 'id' => $model->libros_id],
@@ -38,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ])
             ?>
+-->            
         </div>
     </div>
 
@@ -66,7 +68,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ];
     echo DetailView::widget([
         'model' => $model,
-        'attributes' => $gridColumn
+        'attributes' => $gridColumn,
+        
     ]); 
 ?>
     </div>
@@ -77,8 +80,8 @@ if($providerAutorHasLibros->totalCount){
     $gridColumnAutorHasLibros = [
         ['class' => 'yii\grid\SerialColumn'],
             [
-                'attribute' => 'autorAutor.autor_id',
-                'label' => Yii::t('app', 'Autor Autor')
+                'attribute' => 'autorAutor.nombre',
+                'label' => Yii::t('app', 'Nombre del Autor')
             ],
                 ];
     echo Gridview::widget([

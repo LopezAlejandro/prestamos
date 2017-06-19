@@ -69,7 +69,7 @@ class PrestamosController extends Controller
         $model = new Prestamos();
         
         if(empty($model->fecha_devolucion)){
-        				$model->fecha_devolucion = new Expression('NOW()');
+        				$model->fecha_devolucion == new Expression('NOW()');
 		  }
 		  
 		  if(empty($model->nro_prestamo)){

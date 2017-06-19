@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'titulo',
         'ejemplar',
         [
-                'attribute' => 'tipoLibro.descripcion',
+                'attribute' => 'tipoLibro.titulo',
                 'label' => Yii::t('app', 'Tipo Libro')
         ],
         [
