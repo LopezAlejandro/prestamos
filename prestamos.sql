@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2017 at 03:22 PM
--- Server version: 10.1.23-MariaDB
--- PHP Version: 7.1.5
+-- Generation Time: Jun 21, 2017 at 06:22 PM
+-- Server version: 10.1.24-MariaDB
+-- PHP Version: 7.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,6 +35,34 @@ CREATE TABLE `autor` (
   `nacimiento` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `autor`
+--
+
+INSERT INTO `autor` (`autor_id`, `nombre`, `nacionalidad`, `nacimiento`) VALUES
+(1, 'Gabriel García Márquez', NULL, NULL),
+(2, 'William Shakespeare', NULL, NULL),
+(3, 'Miguel De Cervantes Saavedra', NULL, NULL),
+(4, 'Pablo Neruda', NULL, NULL),
+(5, 'Mario Vargas Llosa', NULL, NULL),
+(6, 'Ana Frank', NULL, NULL),
+(7, 'Mario Benedetti', NULL, NULL),
+(8, 'Paulo Coelho', NULL, NULL),
+(9, 'Jorge Luis Borges', NULL, NULL),
+(10, 'Charles Dickens', NULL, NULL),
+(11, 'Federico García Lorca', NULL, NULL),
+(12, 'Gabriela Mistral', NULL, NULL),
+(13, 'Isabel Allende', NULL, NULL),
+(14, 'Agatha Christie', NULL, NULL),
+(15, 'Nicolás Maquiavelo', NULL, NULL),
+(16, 'Alejandro Dumas', NULL, NULL),
+(17, 'Albert Camus', NULL, NULL),
+(18, 'Rosalia de Castro', NULL, NULL),
+(19, 'José Mauro De Vasconcelos', NULL, NULL),
+(20, 'José Pablo Feinmann', NULL, NULL),
+(21, 'Arturo Pérez-Reverte', NULL, NULL),
+(22, 'Pedro Antonio de Alarcón', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +73,14 @@ CREATE TABLE `autor_has_libros` (
   `autor_autor_id` int(6) NOT NULL,
   `libros_libros_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `autor_has_libros`
+--
+
+INSERT INTO `autor_has_libros` (`autor_autor_id`, `libros_libros_id`) VALUES
+(5, 1),
+(21, 1);
 
 -- --------------------------------------------------------
 
@@ -122,8 +158,8 @@ CREATE TABLE `lectores` (
   `mail` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `created_by` datetime DEFAULT NULL,
-  `updated_by` datetime DEFAULT NULL,
+  `created_by` varchar(45) DEFAULT NULL,
+  `updated_by` varchar(45) DEFAULT NULL,
   `estado` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -154,9 +190,16 @@ CREATE TABLE `libros` (
   `tipo_libro_id` smallint(6) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_by` varchar(45) DEFAULT NULL,
+  `updated_by` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `libros`
+--
+
+INSERT INTO `libros` (`libros_id`, `titulo`, `editorial`, `ano`, `edicion`, `ejemplar`, `nro_libro`, `estado_id`, `deposito_id`, `tipo_libro_id`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, 'Libro Numero 1', 'Editorial 1', 1987, 12, 1, 100001, 1, 1, 1, '2017-06-19 09:45:39', '2017-06-19 10:04:01', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -195,8 +238,8 @@ CREATE TABLE `prestamos` (
   `activo` tinyint(1) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_by` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` varchar(45) DEFAULT NULL,
+  `updated_by` varchar(45) DEFAULT NULL,
   `nro_prestamo` int(11) NOT NULL,
   `libros_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -367,7 +410,7 @@ ALTER TABLE `tipo_libro`
 -- AUTO_INCREMENT for table `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `autor_id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `autor_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `estado_lector`
 --
@@ -382,7 +425,7 @@ ALTER TABLE `lectores`
 -- AUTO_INCREMENT for table `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `libros_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `libros_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `multas`
 --

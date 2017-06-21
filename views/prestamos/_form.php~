@@ -27,9 +27,9 @@ use yii\widgets\ActiveForm;
 <!--
     <?= $form->field($model, 'extension')->checkbox() ?>
 -->
-     
+<!--     
     <?= $form->field($model, 'fecha_devolucion')->textInput(['placeholder' => 'Fecha Devolucion']) ?>
-<!--   
+-->   
     <?= $form->field($model, 'fecha_devolucion')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
         'saveFormat' => 'php:Y-m-d',
@@ -41,7 +41,7 @@ use yii\widgets\ActiveForm;
             ]
         ],
     ]); ?>
--->
+
     <?= $form->field($model, 'lectores_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->orderBy('lectores_id')->asArray()->all(), 'lectores_id', 'nombre'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Lectores')],

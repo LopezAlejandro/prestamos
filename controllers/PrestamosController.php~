@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Expression;
+use \DateTime;
 
 /**
  * PrestamosController implements the CRUD actions for Prestamos model.
@@ -69,11 +70,22 @@ class PrestamosController extends Controller
         $model = new Prestamos();
         
         if(empty($model->fecha_devolucion)){
-        				$model->fecha_devolucion == new Expression('NOW()');
+        				$date = new DateTime('NOW');
+						$date->add(new DateInterval('P7D'));
+						$date->format('Y-m-d');
+        				$model->fecha_devolucion = $date;
 		  }
 		  
 		  if(empty($model->nro_prestamo)){
         				$model->nro_prestamo = '5';
+		  }
+		  
+		  if(empty($model->extension)){
+        				$model->extension = '0';
+		  }
+		  
+		  if(empty($model->activo)){
+        				$model->activo = '1';
 		  }
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
