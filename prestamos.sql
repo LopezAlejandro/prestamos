@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 21, 2017 at 06:22 PM
+-- Generation Time: Jun 22, 2017 at 04:22 PM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.1.6
 
@@ -79,8 +79,8 @@ CREATE TABLE `autor_has_libros` (
 --
 
 INSERT INTO `autor_has_libros` (`autor_autor_id`, `libros_libros_id`) VALUES
-(5, 1),
-(21, 1);
+(2, 1),
+(6, 1);
 
 -- --------------------------------------------------------
 
@@ -169,7 +169,8 @@ CREATE TABLE `lectores` (
 
 INSERT INTO `lectores` (`lectores_id`, `nombre`, `documento`, `tipo_lector_id`, `tipo_documento_id`, `direccion`, `telefono`, `mail`, `created_at`, `updated_at`, `created_by`, `updated_by`, `estado`) VALUES
 (1, 'Alejandro Lopez', '18225744', 4, 1, 'Jose Hernandez 2248', '36599872', 'lopalejandro@gmail.com', '2017-06-14 16:03:56', '2017-06-14 16:03:56', NULL, NULL, 1),
-(2, 'Marisa Concheso', '21116047', 1, 1, '', '', '', '2017-06-15 11:45:22', '2017-06-15 11:45:22', NULL, NULL, 1);
+(2, 'Marisa Concheso', '21116047', 1, 1, '', '', '', '2017-06-15 11:45:22', '2017-06-15 11:45:22', NULL, NULL, 1),
+(3, 'Lector 3', '25689752', 2, 2, '', '', '', '2017-06-22 11:36:27', '2017-06-22 11:36:27', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -199,7 +200,7 @@ CREATE TABLE `libros` (
 --
 
 INSERT INTO `libros` (`libros_id`, `titulo`, `editorial`, `ano`, `edicion`, `ejemplar`, `nro_libro`, `estado_id`, `deposito_id`, `tipo_libro_id`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 'Libro Numero 1', 'Editorial 1', 1987, 12, 1, 100001, 1, 1, 1, '2017-06-19 09:45:39', '2017-06-19 10:04:01', 'admin', 'admin');
+(1, 'Libro Numero 1', 'Editorial 1', 1987, 12, 1, 100001, 1, 1, 1, '2017-06-19 09:45:39', '2017-06-22 12:56:25', 'admin', NULL);
 
 -- --------------------------------------------------------
 
@@ -242,6 +243,17 @@ CREATE TABLE `prestamos` (
   `updated_by` varchar(45) DEFAULT NULL,
   `nro_prestamo` int(11) NOT NULL,
   `libros_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prestamos_has_libros`
+--
+
+CREATE TABLE `prestamos_has_libros` (
+  `prestamos_prestamos_id` int(11) NOT NULL,
+  `libros_libros_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -385,6 +397,14 @@ ALTER TABLE `prestamos`
   ADD KEY `prestamos_libros_FK` (`libros_id`);
 
 --
+-- Indexes for table `prestamos_has_libros`
+--
+ALTER TABLE `prestamos_has_libros`
+  ADD PRIMARY KEY (`prestamos_prestamos_id`,`libros_libros_id`),
+  ADD KEY `fk_prestamos_has_libros_libros1_idx` (`libros_libros_id`),
+  ADD KEY `fk_prestamos_has_libros_prestamos1_idx` (`prestamos_prestamos_id`);
+
+--
 -- Indexes for table `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
@@ -420,7 +440,7 @@ ALTER TABLE `estado_lector`
 -- AUTO_INCREMENT for table `lectores`
 --
 ALTER TABLE `lectores`
-  MODIFY `lectores_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `lectores_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `libros`
 --
@@ -435,7 +455,7 @@ ALTER TABLE `multas`
 -- AUTO_INCREMENT for table `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `prestamos_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `prestamos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tipo_documento`
 --
@@ -486,6 +506,13 @@ ALTER TABLE `multas_has_prestamos`
 ALTER TABLE `prestamos`
   ADD CONSTRAINT `prestamos_lectores_FK` FOREIGN KEY (`lectores_id`) REFERENCES `lectores` (`lectores_id`),
   ADD CONSTRAINT `prestamos_libros_FK` FOREIGN KEY (`libros_id`) REFERENCES `libros` (`libros_id`);
+
+--
+-- Constraints for table `prestamos_has_libros`
+--
+ALTER TABLE `prestamos_has_libros`
+  ADD CONSTRAINT `fk_prestamos_has_libros_libros1` FOREIGN KEY (`libros_libros_id`) REFERENCES `libros` (`libros_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_prestamos_has_libros_prestamos1` FOREIGN KEY (`prestamos_prestamos_id`) REFERENCES `prestamos` (`prestamos_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
