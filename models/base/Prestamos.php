@@ -25,6 +25,8 @@ use yii\behaviors\BlameableBehavior;
  * @property \app\models\Multas[] $multasMultas
  * @property \app\models\Lectores $lectores
  * @property \app\models\Libros $libros
+ * @property \app\models\PrestamosHasLibros[] $prestamosHasLibros
+ * @property \app\models\Libros[] $librosLibros
  */
 class Prestamos extends \yii\db\ActiveRecord
 {
@@ -38,7 +40,8 @@ class Prestamos extends \yii\db\ActiveRecord
         return [
             [['extension', 'fecha_devolucion', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'required'],
             [['extension', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'integer'],
-            [['fecha_devolucion', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
+            [['fecha_devolucion', 'created_at', 'updated_at'], 'safe'],
+            [['created_by', 'updated_by'], 'string', 'max' => 45],
             [['nro_prestamo'], 'unique']
         ];
     }
@@ -97,6 +100,22 @@ class Prestamos extends \yii\db\ActiveRecord
     public function getLibros()
     {
         return $this->hasOne(\app\models\Libros::className(), ['libros_id' => 'libros_id']);
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPrestamosHasLibros()
+    {
+        return $this->hasMany(\app\models\PrestamosHasLibros::className(), ['prestamos_prestamos_id' => 'prestamos_id']);
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLibrosLibros()
+    {
+        return $this->hasMany(\app\models\Libros::className(), ['libros_id' => 'libros_libros_id'])->viaTable('prestamos_has_libros', ['prestamos_prestamos_id' => 'prestamos_id']);
     }
     
 /**

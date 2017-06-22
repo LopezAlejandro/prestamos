@@ -66,6 +66,10 @@ class LectoresController extends Controller
     public function actionCreate()
     {
         $model = new Lectores();
+        
+        if(empty($model->estado)) {
+        		$model->estado = '1';
+		  }
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->lectores_id]);

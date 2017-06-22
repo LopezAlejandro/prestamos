@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= Yii::t('app', 'Libros').' - '. Html::encode($this->title) ?></h2>
+            <h2><?= Yii::t('app', 'Libros').' '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
 <!--
@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'attribute' => 'deposito.descripcion',
-            'label' => Yii::t('app', 'Depósito'),
+            'label' => Yii::t('app', 'Deposito'),
         ],
         'editorial',
         'edicion',
@@ -68,8 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ];
     echo DetailView::widget([
         'model' => $model,
-        'attributes' => $gridColumn,
-        
+        'attributes' => $gridColumn
     ]); 
 ?>
     </div>
@@ -81,7 +80,7 @@ if($providerAutorHasLibros->totalCount){
         ['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'autorAutor.nombre',
-                'label' => Yii::t('app', 'Nombre del Autor')
+                'label' => Yii::t('app', 'Autor(es)')
             ],
                 ];
     echo Gridview::widget([
@@ -123,6 +122,30 @@ if($providerPrestamos->totalCount){
             'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('app', 'Prestamos')),
         ],
         'columns' => $gridColumnPrestamos
+    ]);
+}
+?>
+    </div>
+    
+    <div class="row">
+<?php
+if($providerPrestamosHasLibros->totalCount){
+    $gridColumnPrestamosHasLibros = [
+        ['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute' => 'prestamosPrestamos.prestamos_id',
+                'label' => Yii::t('app', 'Prestamos Prestamos')
+            ],
+                ];
+    echo Gridview::widget([
+        'dataProvider' => $providerPrestamosHasLibros,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-prestamos-has-libros']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('app', 'Prestamos Has Libros')),
+        ],
+        'columns' => $gridColumnPrestamosHasLibros
     ]);
 }
 ?>

@@ -63,11 +63,12 @@ use app\models\Prestamos;
             'activo' => $this->activo,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
             'nro_prestamo' => $this->nro_prestamo,
             'libros_id' => $this->libros_id,
         ]);
+
+        $query->andFilterWhere(['like', 'created_by', $this->created_by])
+            ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
 
         return $dataProvider;
     }

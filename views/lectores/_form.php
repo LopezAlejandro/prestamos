@@ -45,12 +45,14 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
+    
+
     <?= $form->field($model, 'direccion')->textInput(['maxlength' => true, 'placeholder' => 'Direccion']) ?>
 
     <?= $form->field($model, 'telefono')->textInput(['maxlength' => true, 'placeholder' => 'Telefono']) ?>
 
     <?= $form->field($model, 'mail')->textInput(['maxlength' => true, 'placeholder' => 'Mail']) ?>
-
+<!--
     <?= $form->field($model, 'estado')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\EstadoLector::find()->orderBy('estado_id')->asArray()->all(), 'estado_id', 'descripcion'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Estado lector')],
@@ -58,7 +60,8 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
-
+-->
+<!--
     <?php
     $forms = [
         [
@@ -79,6 +82,7 @@ use yii\widgets\ActiveForm;
         ],
     ]);
     ?>
+-->
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>

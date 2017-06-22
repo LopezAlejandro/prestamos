@@ -23,6 +23,14 @@ use yii\widgets\ActiveForm;
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+    'viewParams' => [
+        'class' => 'PrestamosHasLibros', 
+        'relID' => 'prestamos-has-libros', 
+        'value' => \yii\helpers\Json::encode($model->prestamosHasLibros),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
 ?>
 
 <div class="libros-form">
@@ -32,12 +40,12 @@ use yii\widgets\ActiveForm;
     <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'libros_id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
-
-	 <?= $form->field($model, 'nro_libro')->textInput(['placeholder' => 'Nro Libro']) ?>
     
-    <?= $form->field($model, 'titulo')->textInput(['maxlength' => true, 'placeholder' => 'Titulo']) ?>
+    <?= $form->field($model, 'nro_libro')->textInput(['placeholder' => 'Nro Libro']) ?>
 
-	 <?= $form->field($model, 'ejemplar')->textInput(['placeholder' => 'Ejemplar']) ?>
+    <?= $form->field($model, 'titulo')->textInput(['maxlength' => true, 'placeholder' => 'Título']) ?>
+
+    <?= $form->field($model, 'ejemplar')->textInput(['placeholder' => 'Ejemplar']) ?>
     
     <?= $form->field($model, 'tipo_libro_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\TipoLibro::find()->orderBy('tipo_libro_id')->asArray()->all(), 'tipo_libro_id', 'descripcion'),
@@ -46,7 +54,7 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
-    
+        
     <?= $form->field($model, 'estado_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Estado::find()->orderBy('estado_id')->asArray()->all(), 'estado_id', 'descripcion'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Estado')],
@@ -54,7 +62,7 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
-    
+
     <?= $form->field($model, 'deposito_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Deposito::find()->orderBy('deposito_id')->asArray()->all(), 'deposito_id', 'descripcion'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Deposito')],
@@ -62,12 +70,12 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
-    
+
     <?= $form->field($model, 'editorial')->textInput(['maxlength' => true, 'placeholder' => 'Editorial']) ?>
 
-    <?= $form->field($model, 'edicion')->textInput(['placeholder' => 'Edicion']) ?>
+    <?= $form->field($model, 'edicion')->textInput(['placeholder' => 'Edición']) ?>
 
- 	 <?= $form->field($model, 'ano')->textInput(['placeholder' => 'Ano']) ?>   
+    <?= $form->field($model, 'ano')->textInput(['placeholder' => 'Año']) ?>
 
     <?php
     $forms = [
@@ -77,12 +85,18 @@ use yii\widgets\ActiveForm;
                 'row' => \yii\helpers\ArrayHelper::toArray($model->autorHasLibros),
             ]),
         ],
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Prestamos')),
-            'content' => $this->render('_formPrestamos', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->prestamos),
-            ]),
-        ],
+//        [
+//            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Prestamos')),
+//            'content' => $this->render('_formPrestamos', [
+//                'row' => \yii\helpers\ArrayHelper::toArray($model->prestamos),
+//            ]),
+//        ],
+//        [
+//            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'PrestamosHasLibros')),
+//            'content' => $this->render('_formPrestamosHasLibros', [
+//                'row' => \yii\helpers\ArrayHelper::toArray($model->prestamosHasLibros),
+//            ]),
+//        ],
     ];
     echo kartik\tabs\TabsX::widget([
         'items' => $forms,

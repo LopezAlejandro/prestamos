@@ -20,17 +20,18 @@ $this->registerJs($search);
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+<!--
     <p>
         <?= Html::a(Yii::t('app', 'Create Libros'), ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
+-->    
     <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
     <?php 
     $gridColumn = [
-        ['class' => 'yii\grid\SerialColumn'],
+//        ['class' => 'yii\grid\SerialColumn'],
         [
             'class' => 'kartik\grid\ExpandRowColumn',
             'width' => '50px',
@@ -60,6 +61,7 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Tipo libro', 'id' => 'grid-libros-search-tipo_libro_id']
             ],
+            
             [
                 'attribute' => 'estado_id',
                 'label' => Yii::t('app', 'Estado'),
@@ -73,6 +75,7 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Estado', 'id' => 'grid-libros-search-estado_id']
             ],
+            
             [
                 'attribute' => 'deposito_id',
                 'label' => Yii::t('app', 'Deposito'),
@@ -86,8 +89,8 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Deposito', 'id' => 'grid-libros-search-deposito_id']
             ],
-        'editorial',
         
+        'editorial',
         'edicion',
         'ano',
         [
@@ -106,9 +109,24 @@ $this->registerJs($search);
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
         // your toolbar can include the additional full export menu
-        'toolbar' => [
-            '{export}',
-            
+        'toolbar'=> [
+            ['content'=>
+                Html::a('<i class="glyphicon glyphicon-plus"></i>', 
+                	['create'], 
+                	['class' => 'btn btn-success',
+                		'title'=>Yii::t('app', 'Create Books') 
+                	]
+                ).' '.
+                Html::a('<i class="glyphicon glyphicon-repeat"></i>', 
+                	['index'], 
+                	['data-pjax'=>0, 
+                		'class'=>'btn btn-default', 
+                		'title'=>Yii::t('kvgrid', 'Reset Grid')
+                	]
+                )
+            ],
+           '{toggleData}',
+           '{export}',
         ],
     ]); ?>
 

@@ -30,6 +30,7 @@ use kartik\grid\GridView;
             'attribute' => 'tipoLector.descripcion',
             'label' => Yii::t('app', 'Tipo Lector'),
         ],
+        
         'direccion',
         'telefono',
         'mail',

@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= Yii::t('app', 'Lectores').' - '. Html::encode($this->title) ?></h2>
+            <h2><?= Yii::t('app', 'Lectores').' '. Html::encode($this->title) ?></h2>
         </div>
     </div>
 
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         [
                 'attribute' => 'tipoDocumento.descripcion',
                 'label' => Yii::t('app', 'Tipo Documento')
-            ],
+        ],
         'documento',
         [
                 'attribute' => 'tipoLector.descripcion',

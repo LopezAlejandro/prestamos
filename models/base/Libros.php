@@ -30,6 +30,8 @@ use yii\behaviors\BlameableBehavior;
  * @property \app\models\TipoLibro $tipoLibro
  * @property \app\models\Estado $estado
  * @property \app\models\Prestamos[] $prestamos
+ * @property \app\models\PrestamosHasLibros[] $prestamosHasLibros
+ * @property \app\models\Prestamos[] $prestamosPrestamos
  */
 class Libros extends \yii\db\ActiveRecord
 {
@@ -43,8 +45,8 @@ class Libros extends \yii\db\ActiveRecord
         return [
             [['titulo', 'ejemplar', 'nro_libro', 'estado_id', 'deposito_id', 'tipo_libro_id'], 'required'],
             [['ano', 'edicion', 'ejemplar', 'nro_libro', 'estado_id', 'deposito_id', 'tipo_libro_id'], 'integer'],
-            [['created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
-            [['titulo', 'editorial'], 'string', 'max' => 45]
+            [['created_at', 'updated_at'], 'safe'],
+            [['titulo', 'editorial', 'created_by', 'updated_by'], 'string', 'max' => 45]
         ];
     }
     
@@ -70,7 +72,7 @@ class Libros extends \yii\db\ActiveRecord
             'ejemplar' => Yii::t('app', 'Ejemplar'),
             'nro_libro' => Yii::t('app', 'Nro de Libro'),
             'estado_id' => Yii::t('app', 'Estado'),
-            'deposito_id' => Yii::t('app', 'Depósito'),
+            'deposito_id' => Yii::t('app', 'Deposito'),
             'tipo_libro_id' => Yii::t('app', 'Tipo de Libro'),
         ];
     }
@@ -122,6 +124,22 @@ class Libros extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\app\models\Prestamos::className(), ['libros_id' => 'libros_id']);
     }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPrestamosHasLibros()
+    {
+        return $this->hasMany(\app\models\PrestamosHasLibros::className(), ['libros_libros_id' => 'libros_id']);
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPrestamosPrestamos()
+    {
+        return $this->hasMany(\app\models\Prestamos::className(), ['prestamos_id' => 'prestamos_prestamos_id'])->viaTable('prestamos_has_libros', ['libros_libros_id' => 'libros_id']);
+    }
     
 /**
      * @inheritdoc
@@ -140,7 +158,6 @@ class Libros extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
-                'value' => 'admin',
             ],
         ];
     }

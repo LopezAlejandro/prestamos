@@ -61,8 +61,6 @@ use app\models\Lectores;
             'tipo_documento_id' => $this->tipo_documento_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
             'estado' => $this->estado,
         ]);
 
@@ -70,7 +68,9 @@ use app\models\Lectores;
             ->andFilterWhere(['like', 'documento', $this->documento])
             ->andFilterWhere(['like', 'direccion', $this->direccion])
             ->andFilterWhere(['like', 'telefono', $this->telefono])
-            ->andFilterWhere(['like', 'mail', $this->mail]);
+            ->andFilterWhere(['like', 'mail', $this->mail])
+            ->andFilterWhere(['like', 'created_by', $this->created_by])
+            ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
 
         return $dataProvider;
     }

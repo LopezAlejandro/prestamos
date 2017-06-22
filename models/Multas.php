@@ -23,4 +23,15 @@ class Multas extends BaseMultas
         ]);
     }
 	
+    /**
+     * @inheritdoc
+     */
+    public function attributeHints()
+    {
+        return [
+            'multas_id' => Yii::t('app', 'Multas ID'),
+            'fin_multa' => Yii::t('app', 'Fin Multa'),
+            'activa' => Yii::t('app', 'Activa'),
+        ];
+    }
 }

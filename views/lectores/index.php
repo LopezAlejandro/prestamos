@@ -20,11 +20,12 @@ $this->registerJs($search);
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+<!--
     <p>
         <?= Html::a(Yii::t('app', 'Create Lectores'), ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
+-->    
     <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
@@ -105,21 +106,25 @@ $this->registerJs($search);
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
         // your toolbar can include the additional full export menu
-        'toolbar' => [
-            '{export}',
-            ExportMenu::widget([
-                'dataProvider' => $dataProvider,
-                'columns' => $gridColumn,
-                'target' => ExportMenu::TARGET_BLANK,
-                'fontAwesome' => true,
-                'dropdownOptions' => [
-                    'label' => 'Full',
-                    'class' => 'btn btn-default',
-                    'itemsBefore' => [
-                        '<li class="dropdown-header">Export All Data</li>',
-                    ],
-                ],
-            ]) ,
+        
+		  'toolbar'=> [
+            ['content'=>
+                Html::a('<i class="glyphicon glyphicon-plus"></i>', 
+                	['create'], 
+                	['class' => 'btn btn-success',
+                		'title'=>Yii::t('app', 'Create Lectores') 
+                	]
+                ).' '.
+                Html::a('<i class="glyphicon glyphicon-repeat"></i>', 
+                	['index'], 
+                	['data-pjax'=>0, 
+                		'class'=>'btn btn-default', 
+                		'title'=>Yii::t('kvgrid', 'Reset Grid')
+                	]
+                )
+            ],
+           '{toggleData}',
+           '{export}',
         ],
     ]); ?>
 

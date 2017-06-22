@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Libros */
 
-$this->title = $model->titulo;
+$this->title = $model->libros_id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Libros'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -23,24 +23,24 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php 
     $gridColumn = [
         ['attribute' => 'libros_id', 'visible' => false],
-        'nro_libro',	        
         'titulo',
-        'ejemplar',
-        [
-                'attribute' => 'tipoLibro.descripcion',
-                'label' => Yii::t('app', 'Tipo Libro')
-        ],
-        [
-                'attribute' => 'estado.descripcion',
-                'label' => Yii::t('app', 'Estado')
-        ],
-        [
-                'attribute' => 'deposito.descripcion',
-                'label' => Yii::t('app', 'Deposito')
-        ],    
         'editorial',
-        'edicion',
         'ano',
+        'edicion',
+        'ejemplar',
+        'nro_libro',
+        [
+                'attribute' => 'estado.estado_id',
+                'label' => Yii::t('app', 'Estado')
+            ],
+        [
+                'attribute' => 'deposito.deposito_id',
+                'label' => Yii::t('app', 'Deposito')
+            ],
+        [
+                'attribute' => 'tipoLibro.tipo_libro_id',
+                'label' => Yii::t('app', 'Tipo Libro')
+            ],
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -55,8 +55,8 @@ if($providerAutorHasLibros->totalCount){
     $gridColumnAutorHasLibros = [
         ['class' => 'yii\grid\SerialColumn'],
         [
-                'attribute' => 'autorAutor.nombre',
-                'label' => Yii::t('app', 'nombre del Autor')
+                'attribute' => 'autorAutor.autor_id',
+                'label' => Yii::t('app', 'Autor Autor')
             ],
             ];
     echo Gridview::widget([
@@ -98,6 +98,30 @@ if($providerPrestamos->totalCount){
         'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
         'toggleData' => false,
         'columns' => $gridColumnPrestamos
+    ]);
+}
+?>
+    </div>
+    
+    <div class="row">
+<?php
+if($providerPrestamosHasLibros->totalCount){
+    $gridColumnPrestamosHasLibros = [
+        ['class' => 'yii\grid\SerialColumn'],
+        [
+                'attribute' => 'prestamosPrestamos.prestamos_id',
+                'label' => Yii::t('app', 'Prestamos Prestamos')
+            ],
+            ];
+    echo Gridview::widget([
+        'dataProvider' => $providerPrestamosHasLibros,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => Html::encode(Yii::t('app', 'Prestamos Has Libros')),
+        ],
+        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
+        'toggleData' => false,
+        'columns' => $gridColumnPrestamosHasLibros
     ]);
 }
 ?>

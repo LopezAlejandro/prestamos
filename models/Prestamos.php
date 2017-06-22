@@ -19,7 +19,8 @@ class Prestamos extends BasePrestamos
 	    [
             [['extension', 'fecha_devolucion', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'required'],
             [['extension', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'integer'],
-            [['fecha_devolucion', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
+            [['fecha_devolucion', 'created_at', 'updated_at'], 'safe'],
+            [['created_by', 'updated_by'], 'string', 'max' => 45],
             [['nro_prestamo'], 'unique']
         ]);
     }

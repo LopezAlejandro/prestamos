@@ -66,12 +66,12 @@ use app\models\Libros;
             'tipo_libro_id' => $this->tipo_libro_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
         ]);
 
         $query->andFilterWhere(['like', 'titulo', $this->titulo])
-            ->andFilterWhere(['like', 'editorial', $this->editorial]);
+            ->andFilterWhere(['like', 'editorial', $this->editorial])
+            ->andFilterWhere(['like', 'created_by', $this->created_by])
+            ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
 
         return $dataProvider;
     }

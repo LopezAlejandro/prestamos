@@ -3,20 +3,20 @@ use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
 
     $dataProvider = new ArrayDataProvider([
-        'allModels' => $model->autorHasLibros,
+        'allModels' => $model->prestamosHasLibros,
         'key' => function($model){
-            return ['autor_autor_id' => $model->autor_autor_id, 'libros_libros_id' => $model->libros_libros_id];
+            return ['prestamos_prestamos_id' => $model->prestamos_prestamos_id, 'libros_libros_id' => $model->libros_libros_id];
         }
     ]);
     $gridColumns = [
         ['class' => 'yii\grid\SerialColumn'],
         [
-                'attribute' => 'autorAutor.autor_id',
-                'label' => Yii::t('app', 'Autor(es)')
+                'attribute' => 'prestamosPrestamos.prestamos_id',
+                'label' => Yii::t('app', 'Prestamos Prestamos')
             ],
         [
             'class' => 'yii\grid\ActionColumn',
-            'controller' => 'autor-has-libros'
+            'controller' => 'prestamos-has-libros'
         ],
     ];
     

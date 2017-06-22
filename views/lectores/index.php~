@@ -20,11 +20,12 @@ $this->registerJs($search);
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+<!--
     <p>
         <?= Html::a(Yii::t('app', 'Create Lectores'), ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
+-->    
     <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
@@ -49,7 +50,7 @@ $this->registerJs($search);
                 'attribute' => 'tipo_documento_id',
                 'label' => Yii::t('app', 'Tipo Documento'),
                 'value' => function($model){                   
-                    return $model->tipoDocumento->tipo_documento_id;                   
+                    return $model->tipoDocumento->descripcion;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoDocumento::find()->asArray()->all(), 'tipo_documento_id', 'descripcion'),
@@ -63,7 +64,7 @@ $this->registerJs($search);
                 'attribute' => 'tipo_lector_id',
                 'label' => Yii::t('app', 'Tipo Lector'),
                 'value' => function($model){                   
-                    return $model->tipoLector->tipo_lector_id;                   
+                    return $model->tipoLector->descripcion;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoLector::find()->asArray()->all(), 'tipo_lector_id', 'descripcion'),
@@ -80,7 +81,7 @@ $this->registerJs($search);
                 'attribute' => 'estado',
                 'label' => Yii::t('app', 'Estado'),
                 'value' => function($model){                   
-                    return $model->estado0->estado_id;                   
+                    return $model->estado0->descripcion;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\EstadoLector::find()->asArray()->all(), 'estado_id', 'descripcion'),
@@ -105,22 +106,28 @@ $this->registerJs($search);
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
         // your toolbar can include the additional full export menu
-        'toolbar' => [
-            '{export}',
-            ExportMenu::widget([
-                'dataProvider' => $dataProvider,
-                'columns' => $gridColumn,
-                'target' => ExportMenu::TARGET_BLANK,
-                'fontAwesome' => true,
-                'dropdownOptions' => [
-                    'label' => 'Full',
-                    'class' => 'btn btn-default',
-                    'itemsBefore' => [
-                        '<li class="dropdown-header">Export All Data</li>',
-                    ],
-                ],
-            ]) ,
+        
+		  'toolbar'=> [
+            ['content'=>
+                Html::a('<i class="glyphicon glyphicon-plus"></i>', 
+                	['create'], 
+                	['class' => 'btn btn-success',
+                		'title'=>Yii::t('app', 'Create Lectores') 
+                	]
+                ).' '.
+                Html::a('<i class="glyphicon glyphicon-repeat"></i>', 
+                	['index'], 
+                	['data-pjax'=>0, 
+                		'class'=>'btn btn-default', 
+                		'title'=>Yii::t('kvgrid', 'Reset Grid')
+                	]
+                )
+            ],
+           '{toggleData}',
+           '{export}',
         ],
     ]); ?>
 
 </div>
+
+<?= Html::a('Create', ['/user/create'], ['class'=>'btn btn-primary grid-button']) ?>

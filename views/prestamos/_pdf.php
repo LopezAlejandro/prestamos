@@ -66,4 +66,28 @@ if($providerMultasHasPrestamos->totalCount){
 }
 ?>
     </div>
+    
+    <div class="row">
+<?php
+if($providerPrestamosHasLibros->totalCount){
+    $gridColumnPrestamosHasLibros = [
+        ['class' => 'yii\grid\SerialColumn'],
+                [
+                'attribute' => 'librosLibros.libros_id',
+                'label' => Yii::t('app', 'Libros Libros')
+            ],
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerPrestamosHasLibros,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => Html::encode(Yii::t('app', 'Prestamos Has Libros')),
+        ],
+        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
+        'toggleData' => false,
+        'columns' => $gridColumnPrestamosHasLibros
+    ]);
+}
+?>
+    </div>
 </div>
