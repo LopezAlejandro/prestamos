@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.1
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 22, 2017 at 04:22 PM
--- Server version: 10.1.24-MariaDB
--- PHP Version: 7.1.6
+-- Generation Time: Jun 23, 2017 at 07:37 PM
+-- Server version: 10.1.23-MariaDB
+-- PHP Version: 7.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -241,8 +241,7 @@ CREATE TABLE `prestamos` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` varchar(45) DEFAULT NULL,
   `updated_by` varchar(45) DEFAULT NULL,
-  `nro_prestamo` int(11) NOT NULL,
-  `libros_id` int(11) NOT NULL
+  `nro_prestamo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -393,8 +392,7 @@ ALTER TABLE `multas_has_prestamos`
 ALTER TABLE `prestamos`
   ADD PRIMARY KEY (`prestamos_id`),
   ADD UNIQUE KEY `prestamos_UN` (`nro_prestamo`),
-  ADD KEY `prestamos_lectores_FK` (`lectores_id`),
-  ADD KEY `prestamos_libros_FK` (`libros_id`);
+  ADD KEY `prestamos_lectores_FK` (`lectores_id`);
 
 --
 -- Indexes for table `prestamos_has_libros`
@@ -504,8 +502,7 @@ ALTER TABLE `multas_has_prestamos`
 -- Constraints for table `prestamos`
 --
 ALTER TABLE `prestamos`
-  ADD CONSTRAINT `prestamos_lectores_FK` FOREIGN KEY (`lectores_id`) REFERENCES `lectores` (`lectores_id`),
-  ADD CONSTRAINT `prestamos_libros_FK` FOREIGN KEY (`libros_id`) REFERENCES `libros` (`libros_id`);
+  ADD CONSTRAINT `prestamos_lectores_FK` FOREIGN KEY (`lectores_id`) REFERENCES `lectores` (`lectores_id`);
 
 --
 -- Constraints for table `prestamos_has_libros`
