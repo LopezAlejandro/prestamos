@@ -36,6 +36,7 @@ return [
     'Tipo Documento ID' => 'Tipo de Documento',
     'Direccion' => 'Dirección',
     'Telefono' => 'Teléfono',
+    'Create Books' => 'Crear Libro',
     'Mail' => 'Correo Eléctronico',
     'Will open the generated PDF file in a new window' => 'Se abrirá el PDF generado en una nueva ventana',
     'Are you sure you want to delete this item?' => 'Está seguro que quiere borrar este item?'

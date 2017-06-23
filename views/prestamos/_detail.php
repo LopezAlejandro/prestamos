@@ -28,10 +28,6 @@ use kartik\grid\GridView;
         ],
         'activo',
         'nro_prestamo',
-        [
-            'attribute' => 'libros.libros_id',
-            'label' => Yii::t('app', 'Libros'),
-        ],
     ];
     echo DetailView::widget([
         'model' => $model,

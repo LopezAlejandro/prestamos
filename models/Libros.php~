@@ -33,7 +33,7 @@ class Libros extends BaseLibros
             'libros_id' => Yii::t('app', 'Libros ID'),
             'titulo' => Yii::t('app', 'Titulo'),
             'editorial' => Yii::t('app', 'Editorial'),
-            'ano' => Yii::t('app', 'Año'),
+            'ano' => Yii::t('app', 'Ano'),
             'edicion' => Yii::t('app', 'Edicion'),
             'ejemplar' => Yii::t('app', 'Ejemplar'),
             'nro_libro' => Yii::t('app', 'Nro Libro'),

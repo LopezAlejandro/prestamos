@@ -73,20 +73,20 @@ class PrestamosController extends Controller
     {
         $model = new Prestamos();
         
-        $fecha = new DateTime(date('Y-m-d'));
-		  $fecha->add(new DateInterval('P7D'));
-		  
-        if(empty($model->fecha_devolucion)) {
-        		$model->fecha_devolucion = $fecha->format('Y-m-d');
-		  }
-		  
-		  if(empty($model->activo)) {
-        		$model->activo = 1;
-		  }
-		  
-		  if(empty($model->extension)) {
-        		$model->extension = 0;
-		  }
+        $fecha = new DateTime(date('Y-m-d')); 
+		         $fecha->add(new DateInterval('P7D')); 
+		          
+		       if(empty($model->fecha_devolucion)) { 
+		               $model->fecha_devolucion = $fecha->format('Y-m-d'); 
+		         } 
+		          
+		         if(empty($model->activo)) { 
+		               $model->activo = 1; 
+		         } 
+		          
+		         if(empty($model->extension)) { 
+		               $model->extension = 0; 
+		         } 
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->prestamos_id]);
@@ -105,11 +105,7 @@ class PrestamosController extends Controller
      */
     public function actionUpdate($id)
     {
-        if (Yii::$app->request->post('_asnew') == '1') {
-            $model = new Prestamos();
-        }else{
-            $model = $this->findModel($id);
-        }
+        $model = $this->findModel($id);
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->prestamos_id]);
@@ -172,29 +168,6 @@ class PrestamosController extends Controller
         return $pdf->render();
     }
 
-    /**
-    * Creates a new Prestamos model by another data,
-    * so user don't need to input all field from scratch.
-    * If creation is successful, the browser will be redirected to the 'view' page.
-    *
-    * @param mixed $id
-    * @return mixed
-    */
-    public function actionSaveAsNew($id) {
-        $model = new Prestamos();
-
-        if (Yii::$app->request->post('_asnew') != '1') {
-            $model = $this->findModel($id);
-        }
-    
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->prestamos_id]);
-        } else {
-            return $this->render('saveAsNew', [
-                'model' => $model,
-            ]);
-        }
-    }
     
     /**
      * Finds the Prestamos model based on its primary key value.

@@ -12,12 +12,12 @@ use yii\data\ArrayDataProvider;
         ['class' => 'yii\grid\SerialColumn'],
         [
                 'attribute' => 'autorAutor.nombre',
-                'label' => Yii::t('app', 'Autor(es)')
+                'label' => Yii::t('app', 'Nombre')
             ],
-        [
-            'class' => 'yii\grid\ActionColumn',
-            'controller' => 'autor-has-libros'
-        ],
+//        [
+//            'class' => 'yii\grid\ActionColumn',
+//            'controller' => 'autor-has-libros'
+//        ],
     ];
     
     echo GridView::widget([

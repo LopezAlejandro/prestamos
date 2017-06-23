@@ -16,20 +16,13 @@ $items = [
             'row' => $model->autorHasLibros,
         ]),
     ],
-    [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Prestamos')),
-        'content' => $this->render('_dataPrestamos', [
+                            [
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Historial de Prestamos')),
+        'content' => $this->render('_dataPrestamosHasLibros', [
             'model' => $model,
-            'row' => $model->prestamos,
+            'row' => $model->prestamosHasLibros,
         ]),
     ],
-//            [
-//        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Prestamos Has Libros')),
-//        'content' => $this->render('_dataPrestamosHasLibros', [
-//            'model' => $model,
-//            'row' => $model->prestamosHasLibros,
-//        ]),
-//    ],
         ];
 echo TabsX::widget([
     'items' => $items,

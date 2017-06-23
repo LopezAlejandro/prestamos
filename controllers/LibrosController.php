@@ -52,16 +52,12 @@ class LibrosController extends Controller
         $providerAutorHasLibros = new \yii\data\ArrayDataProvider([
             'allModels' => $model->autorHasLibros,
         ]);
-        $providerPrestamos = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->prestamos,
-        ]);
         $providerPrestamosHasLibros = new \yii\data\ArrayDataProvider([
             'allModels' => $model->prestamosHasLibros,
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
             'providerAutorHasLibros' => $providerAutorHasLibros,
-            'providerPrestamos' => $providerPrestamos,
             'providerPrestamosHasLibros' => $providerPrestamosHasLibros,
         ]);
     }
@@ -127,9 +123,6 @@ class LibrosController extends Controller
         $providerAutorHasLibros = new \yii\data\ArrayDataProvider([
             'allModels' => $model->autorHasLibros,
         ]);
-        $providerPrestamos = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->prestamos,
-        ]);
         $providerPrestamosHasLibros = new \yii\data\ArrayDataProvider([
             'allModels' => $model->prestamosHasLibros,
         ]);
@@ -137,7 +130,6 @@ class LibrosController extends Controller
         $content = $this->renderAjax('_pdf', [
             'model' => $model,
             'providerAutorHasLibros' => $providerAutorHasLibros,
-            'providerPrestamos' => $providerPrestamos,
             'providerPrestamosHasLibros' => $providerPrestamosHasLibros,
         ]);
 
@@ -191,26 +183,6 @@ class LibrosController extends Controller
             if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formAutorHasLibros', ['row' => $row]);
-        } else {
-            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-        }
-    }
-    
-    /**
-    * Action to load a tabular form grid
-    * for Prestamos
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
-    public function actionAddPrestamos()
-    {
-        if (Yii::$app->request->isAjax) {
-            $row = Yii::$app->request->post('Prestamos');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
-                $row[] = [];
-            return $this->renderAjax('_formPrestamos', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }

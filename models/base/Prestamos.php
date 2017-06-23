@@ -19,12 +19,10 @@ use yii\behaviors\BlameableBehavior;
  * @property string $created_by
  * @property string $updated_by
  * @property integer $nro_prestamo
- * @property integer $libros_id
  *
  * @property \app\models\MultasHasPrestamos[] $multasHasPrestamos
  * @property \app\models\Multas[] $multasMultas
  * @property \app\models\Lectores $lectores
- * @property \app\models\Libros $libros
  * @property \app\models\PrestamosHasLibros[] $prestamosHasLibros
  * @property \app\models\Libros[] $librosLibros
  */
@@ -38,8 +36,8 @@ class Prestamos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['extension', 'fecha_devolucion', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'required'],
-            [['extension', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'integer'],
+            [['extension', 'fecha_devolucion', 'lectores_id', 'activo', 'nro_prestamo'], 'required'],
+            [['extension', 'lectores_id', 'activo', 'nro_prestamo'], 'integer'],
             [['fecha_devolucion', 'created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'string', 'max' => 45],
             [['nro_prestamo'], 'unique']
@@ -66,7 +64,6 @@ class Prestamos extends \yii\db\ActiveRecord
             'lectores_id' => Yii::t('app', 'Lectores ID'),
             'activo' => Yii::t('app', 'Activo'),
             'nro_prestamo' => Yii::t('app', 'Nro Prestamo'),
-            'libros_id' => Yii::t('app', 'Libros ID'),
         ];
     }
     
@@ -92,14 +89,6 @@ class Prestamos extends \yii\db\ActiveRecord
     public function getLectores()
     {
         return $this->hasOne(\app\models\Lectores::className(), ['lectores_id' => 'lectores_id']);
-    }
-        
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLibros()
-    {
-        return $this->hasOne(\app\models\Libros::className(), ['libros_id' => 'libros_id']);
     }
         
     /**

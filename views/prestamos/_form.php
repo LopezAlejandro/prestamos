@@ -32,10 +32,10 @@ use yii\widgets\ActiveForm;
     <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'prestamos_id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
-
+    
+    <?= $form->field($model, 'nro_prestamo')->textInput(['placeholder' => 'Nro Prestamo']) ?>
+<!--
     <?= $form->field($model, 'extension')->checkbox() ?>
-<!--    
-    <?= $form->field($model, 'fecha_devolucion')->textInput(['placeholder' => 'Fecha Devolucion']) ?>
 -->
     <?= $form->field($model, 'fecha_devolucion')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
@@ -47,11 +47,11 @@ use yii\widgets\ActiveForm;
                 'autoclose' => true
             ]
         ],
-        'disabled'=>true
+        'disabled'=>true, 
     ]); ?>
 
     <?= $form->field($model, 'lectores_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->orderBy('lectores_id')->asArray()->all(), 'lectores_id', 'lectores_id'),
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->orderBy('lectores_id')->asArray()->all(), 'lectores_id', 'nombre'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Lectores')],
         'pluginOptions' => [
             'allowClear' => true
@@ -60,30 +60,24 @@ use yii\widgets\ActiveForm;
 <!--
     <?= $form->field($model, 'activo')->checkbox() ?>
 -->
-    <?= $form->field($model, 'nro_prestamo')->textInput(['placeholder' => 'Nro Prestamo']) ?>
-
-    <?= $form->field($model, 'libros_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('libros_id')->asArray()->all(), 'libros_id', 'libros_id'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose Libros')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
+    
 
     <?php
     $forms = [
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'MultasHasPrestamos')),
-            'content' => $this->render('_formMultasHasPrestamos', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->multasHasPrestamos),
-            ]),
-        ],
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'PrestamosHasLibros')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Libros')),
             'content' => $this->render('_formPrestamosHasLibros', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->prestamosHasLibros),
             ]),
         ],
+        
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Multas')),
+            'content' => $this->render('_formMultasHasPrestamos', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->multasHasPrestamos),
+            ]),
+        ],
+        
     ];
     echo kartik\tabs\TabsX::widget([
         'items' => $forms,
@@ -97,12 +91,7 @@ use yii\widgets\ActiveForm;
     ]);
     ?>
     <div class="form-group">
-    <?php if(Yii::$app->controller->action->id != 'save-as-new'): ?>
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    <?php endif; ?>
-    <?php if(Yii::$app->controller->action->id != 'create'): ?>
-        <?= Html::submitButton(Yii::t('app', 'Save As New'), ['class' => 'btn btn-info', 'value' => '1', 'name' => '_asnew']) ?>
-    <?php endif; ?>
         <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
     </div>
 

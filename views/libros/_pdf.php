@@ -75,36 +75,6 @@ if($providerAutorHasLibros->totalCount){
     
     <div class="row">
 <?php
-if($providerPrestamos->totalCount){
-    $gridColumnPrestamos = [
-        ['class' => 'yii\grid\SerialColumn'],
-        'prestamos_id',
-        'extension',
-        'fecha_devolucion',
-        [
-                'attribute' => 'lectores.lectores_id',
-                'label' => Yii::t('app', 'Lectores')
-            ],
-        'activo',
-        'nro_prestamo',
-        ['attribute' => 'libros_id', 'visible' => false],
-    ];
-    echo Gridview::widget([
-        'dataProvider' => $providerPrestamos,
-        'panel' => [
-            'type' => GridView::TYPE_PRIMARY,
-            'heading' => Html::encode(Yii::t('app', 'Prestamos')),
-        ],
-        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
-        'toggleData' => false,
-        'columns' => $gridColumnPrestamos
-    ]);
-}
-?>
-    </div>
-    
-    <div class="row">
-<?php
 if($providerPrestamosHasLibros->totalCount){
     $gridColumnPrestamosHasLibros = [
         ['class' => 'yii\grid\SerialColumn'],

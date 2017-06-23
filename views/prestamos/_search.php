@@ -43,14 +43,6 @@ use yii\widgets\ActiveForm;
 
     <?php /* echo $form->field($model, 'nro_prestamo')->textInput(['placeholder' => 'Nro Prestamo']) */ ?>
 
-    <?php /* echo $form->field($model, 'libros_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('libros_id')->asArray()->all(), 'libros_id', 'libros_id'),
-        'options' => ['placeholder' => Yii::t('app', 'Choose Libros')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); */ ?>
-
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>

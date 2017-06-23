@@ -16,7 +16,7 @@ $items = [
             'row' => $model->multasHasPrestamos,
         ]),
     ],
-                        [
+                    [
         'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Prestamos Has Libros')),
         'content' => $this->render('_dataPrestamosHasLibros', [
             'model' => $model,

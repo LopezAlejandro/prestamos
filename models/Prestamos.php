@@ -17,8 +17,8 @@ class Prestamos extends BasePrestamos
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['extension', 'fecha_devolucion', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'required'],
-            [['extension', 'lectores_id', 'activo', 'nro_prestamo', 'libros_id'], 'integer'],
+            [['extension', 'fecha_devolucion', 'lectores_id', 'activo', 'nro_prestamo'], 'required'],
+            [['extension', 'lectores_id', 'activo', 'nro_prestamo'], 'integer'],
             [['fecha_devolucion', 'created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'string', 'max' => 45],
             [['nro_prestamo'], 'unique']
@@ -37,7 +37,6 @@ class Prestamos extends BasePrestamos
             'lectores_id' => Yii::t('app', 'Lectores ID'),
             'activo' => Yii::t('app', 'Activo'),
             'nro_prestamo' => Yii::t('app', 'Nro Prestamo'),
-            'libros_id' => Yii::t('app', 'Libros ID'),
         ];
     }
 }

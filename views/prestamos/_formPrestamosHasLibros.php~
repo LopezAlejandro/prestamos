@@ -26,7 +26,7 @@ echo TabularForm::widget([
             'type' => TabularForm::INPUT_WIDGET,
             'widgetClass' => \kartik\widgets\Select2::className(),
             'options' => [
-                'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('libros_id')->asArray()->all(), 'libros_id', 'titulo'),
+                'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('libros_id')->asArray()->all(), 'libros_id', 'libros_id'),
                 'options' => ['placeholder' => Yii::t('app', 'Choose Libros')],
             ],
             'columnOptions' => ['width' => '200px']
@@ -47,7 +47,7 @@ echo TabularForm::widget([
             'type' => GridView::TYPE_DEFAULT,
             'before' => false,
             'footer' => false,
-            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Agregar Libros al Préstamo'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()']),
+            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Add Prestamos Has Libros'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()']),
         ]
     ]
 ]);

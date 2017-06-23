@@ -29,7 +29,6 @@ use yii\behaviors\BlameableBehavior;
  * @property \app\models\Deposito $deposito
  * @property \app\models\TipoLibro $tipoLibro
  * @property \app\models\Estado $estado
- * @property \app\models\Prestamos[] $prestamos
  * @property \app\models\PrestamosHasLibros[] $prestamosHasLibros
  * @property \app\models\Prestamos[] $prestamosPrestamos
  */
@@ -72,7 +71,7 @@ class Libros extends \yii\db\ActiveRecord
             'ejemplar' => Yii::t('app', 'Ejemplar'),
             'nro_libro' => Yii::t('app', 'Nro de Libro'),
             'estado_id' => Yii::t('app', 'Estado'),
-            'deposito_id' => Yii::t('app', 'Deposito'),
+            'deposito_id' => Yii::t('app', 'Depósito'),
             'tipo_libro_id' => Yii::t('app', 'Tipo de Libro'),
         ];
     }
@@ -115,14 +114,6 @@ class Libros extends \yii\db\ActiveRecord
     public function getEstado()
     {
         return $this->hasOne(\app\models\Estado::className(), ['estado_id' => 'estado_id']);
-    }
-        
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPrestamos()
-    {
-        return $this->hasMany(\app\models\Prestamos::className(), ['libros_id' => 'libros_id']);
     }
         
     /**

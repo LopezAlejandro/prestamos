@@ -15,10 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= Yii::t('app', 'Libros').' '. Html::encode($this->title) ?></h2>
+            <h2><?= Yii::t('app', 'Libros').' - '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
-<!--
 <?=             
              Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> ' . Yii::t('app', 'PDF'), 
                 ['pdf', 'id' => $model->libros_id],
@@ -39,7 +38,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ])
             ?>
--->            
         </div>
     </div>
 
@@ -80,7 +78,7 @@ if($providerAutorHasLibros->totalCount){
         ['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'autorAutor.nombre',
-                'label' => Yii::t('app', 'Autor(es)')
+                'label' => Yii::t('app', 'Nombre')
             ],
                 ];
     echo Gridview::widget([
@@ -89,39 +87,9 @@ if($providerAutorHasLibros->totalCount){
         'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-autor-has-libros']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
-            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('app', 'Autor Has Libros')),
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('app', 'Autor(es)')),
         ],
         'columns' => $gridColumnAutorHasLibros
-    ]);
-}
-?>
-    </div>
-    
-    <div class="row">
-<?php
-if($providerPrestamos->totalCount){
-    $gridColumnPrestamos = [
-        ['class' => 'yii\grid\SerialColumn'],
-            'prestamos_id',
-            'extension',
-            'fecha_devolucion',
-            [
-                'attribute' => 'lectores.lectores_id',
-                'label' => Yii::t('app', 'Lectores')
-            ],
-            'activo',
-            'nro_prestamo',
-            ['attribute' => 'libros_id', 'visible' => false],
-    ];
-    echo Gridview::widget([
-        'dataProvider' => $providerPrestamos,
-        'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-prestamos']],
-        'panel' => [
-            'type' => GridView::TYPE_PRIMARY,
-            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('app', 'Prestamos')),
-        ],
-        'columns' => $gridColumnPrestamos
     ]);
 }
 ?>

@@ -17,14 +17,6 @@ use yii\widgets\ActiveForm;
 ]);
 \mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
     'viewParams' => [
-        'class' => 'Prestamos', 
-        'relID' => 'prestamos', 
-        'value' => \yii\helpers\Json::encode($model->prestamos),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
-    'viewParams' => [
         'class' => 'PrestamosHasLibros', 
         'relID' => 'prestamos-has-libros', 
         'value' => \yii\helpers\Json::encode($model->prestamosHasLibros),
@@ -40,11 +32,11 @@ use yii\widgets\ActiveForm;
     <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'libros_id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
-    
+
     <?= $form->field($model, 'nro_libro')->textInput(['placeholder' => 'Nro Libro']) ?>
 
-    <?= $form->field($model, 'titulo')->textInput(['maxlength' => true, 'placeholder' => 'Título']) ?>
-
+    <?= $form->field($model, 'titulo')->textInput(['maxlength' => true, 'placeholder' => 'Titulo']) ?>
+    
     <?= $form->field($model, 'ejemplar')->textInput(['placeholder' => 'Ejemplar']) ?>
     
     <?= $form->field($model, 'tipo_libro_id')->widget(\kartik\widgets\Select2::classname(), [
@@ -54,7 +46,7 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
-        
+    
     <?= $form->field($model, 'estado_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Estado::find()->orderBy('estado_id')->asArray()->all(), 'estado_id', 'descripcion'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Estado')],
@@ -62,7 +54,7 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
-
+    
     <?= $form->field($model, 'deposito_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Deposito::find()->orderBy('deposito_id')->asArray()->all(), 'deposito_id', 'descripcion'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Deposito')],
@@ -70,9 +62,10 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
+    
 
     <?= $form->field($model, 'editorial')->textInput(['maxlength' => true, 'placeholder' => 'Editorial']) ?>
-
+    
     <?= $form->field($model, 'edicion')->textInput(['placeholder' => 'Edicion']) ?>
 
     <?= $form->field($model, 'ano')->textInput(['placeholder' => 'Ano']) ?>
@@ -85,18 +78,12 @@ use yii\widgets\ActiveForm;
                 'row' => \yii\helpers\ArrayHelper::toArray($model->autorHasLibros),
             ]),
         ],
-//        [
-//            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Prestamos')),
-//            'content' => $this->render('_formPrestamos', [
-//                'row' => \yii\helpers\ArrayHelper::toArray($model->prestamos),
-//            ]),
-//        ],
-//        [
-//            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'PrestamosHasLibros')),
-//            'content' => $this->render('_formPrestamosHasLibros', [
-//                'row' => \yii\helpers\ArrayHelper::toArray($model->prestamosHasLibros),
-//            ]),
-//        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'PrestamosHasLibros')),
+            'content' => $this->render('_formPrestamosHasLibros', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->prestamosHasLibros),
+            ]),
+        ],
     ];
     echo kartik\tabs\TabsX::widget([
         'items' => $forms,

@@ -1,14 +1,14 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\LibrosSearch */
+/* @var $searchModel app\models\PrestamosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-$this->title = Yii::t('app', 'Libros');
+$this->title = Yii::t('app', 'Prestamos');
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
 	$('.search-form').toggle(1000);
@@ -16,16 +16,16 @@ $search = "$('.search-button').click(function(){
 });";
 $this->registerJs($search);
 ?>
-<div class="libros-index">
+<div class="prestamos-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 <!--
     <p>
-        <?= Html::a(Yii::t('app', 'Create Libros'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Prestamos'), ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
--->
+-->    
     <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
@@ -44,52 +44,24 @@ $this->registerJs($search);
             'headerOptions' => ['class' => 'kartik-sheet-style'],
             'expandOneOnly' => true
         ],
-        ['attribute' => 'libros_id', 'visible' => false],
-        'nro_libro',
-        'titulo',
-        'ejemplar',
+        ['attribute' => 'prestamos_id', 'visible' => false],
+        'extension',
+        'fecha_devolucion',
         [
-                'attribute' => 'tipo_libro_id',
-                'label' => Yii::t('app', 'Tipo Libro'),
+                'attribute' => 'lectores_id',
+                'label' => Yii::t('app', 'Lectores'),
                 'value' => function($model){                   
-                    return $model->tipoLibro->descripcion;                   
+                    return $model->lectores->lectores_id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\TipoLibro::find()->asArray()->all(), 'tipo_libro_id', 'descripcion'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->asArray()->all(), 'lectores_id', 'lectores_id'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => 'Tipo libro', 'id' => 'grid-libros-search-tipo_libro_id']
+                'filterInputOptions' => ['placeholder' => 'Lectores', 'id' => 'grid-prestamos-search-lectores_id']
             ],
-            [
-                'attribute' => 'estado_id',
-                'label' => Yii::t('app', 'Estado'),
-                'value' => function($model){                   
-                    return $model->estado->descripcion;                   
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Estado::find()->asArray()->all(), 'estado_id', 'descripcion'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Estado', 'id' => 'grid-libros-search-estado_id']
-            ],
-            [
-                'attribute' => 'deposito_id',
-                'label' => Yii::t('app', 'Deposito'),
-                'value' => function($model){                   
-                    return $model->deposito->descripcion;                   
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Deposito::find()->asArray()->all(), 'deposito_id', 'descripcion'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Deposito', 'id' => 'grid-libros-search-deposito_id']
-            ],
-        'editorial',
-        'edicion',
-        'ano',
+        'activo',
+        'nro_prestamo',
         [
             'class' => 'yii\grid\ActionColumn',
         ],
@@ -100,7 +72,7 @@ $this->registerJs($search);
         'filterModel' => $searchModel,
         'columns' => $gridColumn,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-libros']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-prestamos']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
