@@ -34,7 +34,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'prestamos_id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
     <?= $form->field($model, 'extension')->checkbox() ?>
-
+<!--    
+    <?= $form->field($model, 'fecha_devolucion')->textInput(['placeholder' => 'Fecha Devolucion']) ?>
+-->
     <?= $form->field($model, 'fecha_devolucion')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
         'saveFormat' => 'php:Y-m-d',
@@ -45,6 +47,7 @@ use yii\widgets\ActiveForm;
                 'autoclose' => true
             ]
         ],
+        'disabled'=>true
     ]); ?>
 
     <?= $form->field($model, 'lectores_id')->widget(\kartik\widgets\Select2::classname(), [
@@ -54,9 +57,9 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
-
+<!--
     <?= $form->field($model, 'activo')->checkbox() ?>
-
+-->
     <?= $form->field($model, 'nro_prestamo')->textInput(['placeholder' => 'Nro Prestamo']) ?>
 
     <?= $form->field($model, 'libros_id')->widget(\kartik\widgets\Select2::classname(), [

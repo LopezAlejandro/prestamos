@@ -16,13 +16,13 @@ $items = [
             'row' => $model->autorHasLibros,
         ]),
     ],
-//    [
-//        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Prestamos')),
-//        'content' => $this->render('_dataPrestamos', [
-//            'model' => $model,
-//            'row' => $model->prestamos,
-//        ]),
-//    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Prestamos')),
+        'content' => $this->render('_dataPrestamos', [
+            'model' => $model,
+            'row' => $model->prestamos,
+        ]),
+    ],
 //            [
 //        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Prestamos Has Libros')),
 //        'content' => $this->render('_dataPrestamosHasLibros', [
