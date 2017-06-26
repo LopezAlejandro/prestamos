@@ -49,7 +49,7 @@ echo TabularForm::widget([
         'titulo' => [
         		'type' => tabularForm::INPUT_STATIC,
         		'options' => [
-        		'data' => 'libros_libros_id'
+        		'data' => 'libros_id'
         		],
         		
         ],
@@ -81,36 +81,80 @@ echo TabularForm::widget([
 echo  "    </div>\n\n";
 ?>
 
-<?php 
+<div class="usertype-index">
+
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Usertype', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+
+    <?php
     $gridColumns = [
-        ['class' => 'yii\grid\SerialColumn'],
-        ['attribute' => 'libros_id', 'visible' => false],
-        'nro_libro',
-        'titulo',
-        'ejemplar',
-        
-            
-            
+        //['class' => 'kartik\grid\SerialColumn'],
         [
-            'class' => 'yii\grid\ActionColumn',
-            'template' => '{save-as-new} {view} {update} {delete}', 
-		           'buttons' => [ 
-		               'save-as-new' => function ($url) { 
-		                   return Html::a('<span class="glyphicon glyphicon-copy"></span>', $url, ['title' => 'Save As New']); 
-		               }, 
-		           ],
+            'class' => 'kartik\grid\DataColumn',
+            'attribute' => 'name',
+            'vAlign' => 'middle',
         ],
-    ]; 
-    
-echo GridView::widget([
-    'dataProvider'=> $dataProvider,
-//    'filterModel' => $searchModel,
-    'columns' => $gridColumns,
-    'pjax'=>true,
-    'pjaxSettings'=>[
-        'afterGrid'=>Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Agregar Libros al Préstamo'), 
-        					['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()'])
-        ]
-    
-]);
-?>
+        [
+            'class' => 'kartik\grid\BooleanColumn',
+            'attribute' => 'can_create_booking',
+            'vAlign' => 'middle',
+        ],
+        [
+            'class' => 'kartik\grid\BooleanColumn',
+            'attribute' => 'can_see_billing',
+            'vAlign' => 'middle',
+        ],
+        [
+            'class' => 'kartik\grid\BooleanColumn',
+            'attribute' => 'can_create_user',
+            'vAlign' => 'middle',
+        ],
+        [
+            'class' => 'kartik\grid\BooleanColumn',
+            'attribute' => 'can_create_instrument',
+            'vAlign' => 'middle',
+        ],
+        [
+            'class' => 'kartik\grid\BooleanColumn',
+            'attribute' => 'can_create_job',
+            'vAlign' => 'middle',
+        ],
+        [
+            'class' => 'kartik\grid\BooleanColumn',
+            'attribute' => 'can_create_supply',
+            'vAlign' => 'middle',
+        ],
+        [
+            'class' => 'kartik\grid\ActionColumn',
+            'dropdown' => false,
+            'vAlign' => 'middle',
+        ],
+        ['class' => 'kartik\grid\CheckboxColumn']
+    ];
+
+    echo GridView::widget([
+        'dataProvider' => $dataProvider,
+ //       'filterModel' => $searchModel,
+        'columns' => $gridColumns,
+        'responsive' => true,
+        'hover' => true,
+        'floatHeader' => true,
+        'floatHeaderOptions' => ['scrollingTop' => '50'],
+        'showPageSummary' => false,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => 'Libros',
+        ],
+        'export' => [
+            'fontAwesome' => true
+        ],
+        
+    ]);
+    ?>
+
+
+</div>
