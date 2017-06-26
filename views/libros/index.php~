@@ -111,7 +111,7 @@ $this->registerJs($search);
                 Html::a('<i class="glyphicon glyphicon-plus"></i>', 
                 	['create'], 
                 	['class' => 'btn btn-success',
-                		'title'=>Yii::t('app', 'Create Lectores') 
+                		'title'=>Yii::t('app', 'Create Books') 
                 	]
                 ).' '.
                 Html::a('<i class="glyphicon glyphicon-repeat"></i>', 

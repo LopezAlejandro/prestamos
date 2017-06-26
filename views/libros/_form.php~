@@ -73,13 +73,13 @@ use yii\widgets\ActiveForm;
     <?php
     $forms = [
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'AutorHasLibros')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Autor(es)')),
             'content' => $this->render('_formAutorHasLibros', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->autorHasLibros),
             ]),
         ],
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'PrestamosHasLibros')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Historial de Prestamos')),
             'content' => $this->render('_formPrestamosHasLibros', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->prestamosHasLibros),
             ]),
@@ -97,9 +97,18 @@ use yii\widgets\ActiveForm;
     ]);
     ?>
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
-    </div>
+		   <?php if(Yii::$app->controller->action->id != 'save-as-new'): ?> 
+		       <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+		   <?php endif; ?> 
+		   <?php if(Yii::$app->controller->action->id != 'create'): ?> 
+		       <?= Html::submitButton(Yii::t('app', 'Save As New'), ['class' => 'btn btn-info', 'value' => '1', 'name' => '_asnew']) ?> 
+		   <?php endif; ?> 
+		       <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
+		   </div>
+		
+		   <?php ActiveForm::end(); ?>
+		
+		</div>
 
     <?php ActiveForm::end(); ?>
 

@@ -88,7 +88,11 @@ class LibrosController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if (Yii::$app->request->post('_asnew') == '1') {
+            $model = new Libros();
+        }else{
+            $model = $this->findModel($id);
+        }
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->libros_id]);
@@ -151,6 +155,29 @@ class LibrosController extends Controller
         return $pdf->render();
     }
 
+    /**
+    * Creates a new Libros model by another data,
+    * so user don't need to input all field from scratch.
+    * If creation is successful, the browser will be redirected to the 'view' page.
+    *
+    * @param mixed $id
+    * @return mixed
+    */
+    public function actionSaveAsNew($id) {
+        $model = new Libros();
+
+        if (Yii::$app->request->post('_asnew') != '1') {
+            $model = $this->findModel($id);
+        }
+    
+        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            return $this->redirect(['view', 'id' => $model->libros_id]);
+        } else {
+            return $this->render('saveAsNew', [
+                'model' => $model,
+            ]);
+        }
+    }
     
     /**
      * Finds the Libros model based on its primary key value.

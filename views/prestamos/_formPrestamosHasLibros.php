@@ -21,16 +21,43 @@ echo TabularForm::widget([
         'type' => TabularForm::INPUT_TEXT,
     ],
     'attributes' => [
+    	  'libros_id'=>[ // primary key attribute
+            'type'=>TabularForm::INPUT_HIDDEN, 
+            'columnOptions'=>['hidden'=>true]
+        ], 
+//        'nro_libro' => [
+//        		'label' => 'Nro de Libro',
+//        		'type' => TabularForm::INPUT_WIDGET,
+//            'widgetClass' => \kartik\widgets\Select2::className(),
+//            'options' => [
+//                'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('ejemplar')->asArray()->all(), 'libros_id', 'nro_libro'),
+//                'options' => ['placeholder' => Yii::t('app', 'Nro de Libro')],
+//             ]   
+//        ],
+        
         'libros_libros_id' => [
             'label' => 'Libros',
             'type' => TabularForm::INPUT_WIDGET,
             'widgetClass' => \kartik\widgets\Select2::className(),
             'options' => [
-                'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('libros_id')->asArray()->all(), 'libros_id', 'titulo'),
+                'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('ejemplar')->asArray()->all(), 'libros_id', 'nro_libro'),
                 'options' => ['placeholder' => Yii::t('app', 'Choose Libros')],
             ],
             'columnOptions' => ['width' => '200px']
         ],
+        
+        'titulo' => [
+        		'type' => tabularForm::INPUT_STATIC,
+        		'options' => [
+        		'data' => 'libros_libros_id'
+        		],
+        		
+        ],
+        'ejemplar' => [
+        		'type' => tabularForm::INPUT_STATIC,
+        		
+        ],
+        
         'del' => [
             'type' => 'raw',
             'label' => '',
@@ -54,3 +81,36 @@ echo TabularForm::widget([
 echo  "    </div>\n\n";
 ?>
 
+<?php 
+    $gridColumns = [
+        ['class' => 'yii\grid\SerialColumn'],
+        ['attribute' => 'libros_id', 'visible' => false],
+        'nro_libro',
+        'titulo',
+        'ejemplar',
+        
+            
+            
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '{save-as-new} {view} {update} {delete}', 
+		           'buttons' => [ 
+		               'save-as-new' => function ($url) { 
+		                   return Html::a('<span class="glyphicon glyphicon-copy"></span>', $url, ['title' => 'Save As New']); 
+		               }, 
+		           ],
+        ],
+    ]; 
+    
+echo GridView::widget([
+    'dataProvider'=> $dataProvider,
+//    'filterModel' => $searchModel,
+    'columns' => $gridColumns,
+    'pjax'=>true,
+    'pjaxSettings'=>[
+        'afterGrid'=>Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Agregar Libros al Préstamo'), 
+        					['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()'])
+        ]
+    
+]);
+?>
