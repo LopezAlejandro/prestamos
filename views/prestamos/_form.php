@@ -68,6 +68,7 @@ use yii\widgets\ActiveForm;
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Libros')),
             'content' => $this->render('_formPrestamosHasLibros', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->prestamosHasLibros),
+                
             ]),
         ],
         

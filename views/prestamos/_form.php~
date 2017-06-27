@@ -65,14 +65,15 @@ use yii\widgets\ActiveForm;
     <?php
     $forms = [
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'PrestamosHasLibros')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Libros')),
             'content' => $this->render('_formPrestamosHasLibros', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->prestamosHasLibros),
+                
             ]),
         ],
         
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'MultasHasPrestamos')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Multas')),
             'content' => $this->render('_formMultasHasPrestamos', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->multasHasPrestamos),
             ]),
