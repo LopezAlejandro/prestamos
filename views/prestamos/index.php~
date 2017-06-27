@@ -51,7 +51,7 @@ $this->registerJs($search);
                 'attribute' => 'lectores_id',
                 'label' => Yii::t('app', 'Lectores'),
                 'value' => function($model){                   
-                    return $model->lectores->lectores_id;                   
+                    return $model->lectores->nombre;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->asArray()->all(), 'lectores_id', 'lectores_id'),
@@ -83,7 +83,7 @@ $this->registerJs($search);
                 Html::a('<i class="glyphicon glyphicon-plus"></i>', 
                 	['create'], 
                 	['class' => 'btn btn-success',
-                		'title'=>Yii::t('app', 'Create Books') 
+                		'title'=>Yii::t('app', 'Crear Préstamos') 
                 	]
                 ).' '.
                 Html::a('<i class="glyphicon glyphicon-repeat"></i>', 

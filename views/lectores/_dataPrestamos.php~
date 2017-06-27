@@ -14,12 +14,8 @@ use yii\data\ArrayDataProvider;
         'activo',
         'nro_prestamo',
         [
-                'attribute' => 'libros.titulo',
-                'label' => Yii::t('app', 'Título')
-            ],
-        [
-                'attribute' => 'libros.ejemplar',
-                'label' => Yii::t('app', 'Ejemplar')
+                'attribute' => 'libros.libros_id',
+                'label' => Yii::t('app', 'Libros')
             ],
         [
             'class' => 'yii\grid\ActionColumn',

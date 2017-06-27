@@ -102,7 +102,7 @@ class Prestamos extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLibros()
+    public function getLibrosLibros()
     {
         return $this->hasMany(\app\models\Libros::className(), ['libros_id' => 'libros_libros_id'])->viaTable('prestamos_has_libros', ['prestamos_prestamos_id' => 'prestamos_id']);
     }

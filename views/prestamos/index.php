@@ -51,10 +51,10 @@ $this->registerJs($search);
                 'attribute' => 'lectores_id',
                 'label' => Yii::t('app', 'Lectores'),
                 'value' => function($model){                   
-                    return $model->lectores->lectores_id;                   
+                    return $model->lectores->nombre;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->asArray()->all(), 'lectores_id', 'lectores_id'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->asArray()->all(), 'lectores_id', 'nombre'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
