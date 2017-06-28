@@ -78,6 +78,7 @@ $this->registerJs($search);
         'telefono',
         'mail',
         [
+        			 'class'=>'kartik\grid\BooleanColumn',
                 'attribute' => 'estado',
                 'label' => Yii::t('app', 'Estado'),
                 'value' => function($model){                   

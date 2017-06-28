@@ -16,7 +16,7 @@ use yii\helpers\Html;
                 'label' => Yii::t('app', 'Nro de Prestamo')
         ],
         [
-                'attribute' => 'prestamosPrestamos.lectores_id',
+                'attribute' => 'prestamosPrestamos.lector_id',
                 'label' => Yii::t('app', 'Lector')
         ],
 //		  [
