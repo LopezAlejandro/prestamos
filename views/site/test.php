@@ -1,24 +1,4 @@
 <?php
-
-/* @var $this yii\web\View */
-
-use yii\helpers\Html;
-
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        This is the About page. You may modify the following file to customize its content:
-    </p>
-
-    <code><?= __FILE__ ?></code>
-</div>
-
-
-<?php
 $wizard_config = [
     'id' => 'stepwizard',
     'steps' => [
@@ -28,7 +8,7 @@ $wizard_config = [
             'content' => '<h3>Step 1</h3>This is step 1',
             'buttons' => [
                 'next' => [
-                    'title' => 'Siguiente', 
+                    'title' => 'Forward', 
                     'options' => [
                         'class' => 'disabled'
                     ],
@@ -40,14 +20,6 @@ $wizard_config = [
             'icon' => 'glyphicon glyphicon-cloud-upload',
             'content' => '<h3>Step 2</h3>This is step 2',
             'skippable' => true,
-            'buttons' => [
-                'next' => [
-                    'title' => 'Siguiente', 
-                    'options' => [
-                        'class' => 'enabled'
-                    ],
-                 ],
-             ],
         ],
         3 => [
             'title' => 'Step 3',

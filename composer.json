@@ -28,7 +28,8 @@
         "kartik-v/yii2-widget-activeform": "@dev",
         "cornernote/yii2-linkall": "*",
         "mootensai/yii2-enhanced-gii": "dev-master",
-		  "kartik-v/yii2-tree-manager": "dev-master"
+	"kartik-v/yii2-tree-manager": "dev-master",
+	"drsdre/yii2-wizardwidget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
