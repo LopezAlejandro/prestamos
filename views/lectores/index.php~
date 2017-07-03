@@ -129,5 +129,3 @@ $this->registerJs($search);
     ]); ?>
 
 </div>
-
-<?= Html::a('Create', ['/user/create'], ['class'=>'btn btn-primary grid-button']) ?>

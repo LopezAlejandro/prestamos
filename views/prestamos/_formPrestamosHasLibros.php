@@ -49,7 +49,7 @@ echo TabularForm::widget([
         'titulo' => [
         		'type' => tabularForm::INPUT_STATIC,
         		'options' => [
-        		'data' => 'libros_id'
+        		'data' => 'librosLibros.titulo'
         		],
         		
         ],

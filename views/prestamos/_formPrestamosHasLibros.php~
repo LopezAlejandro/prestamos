@@ -80,5 +80,3 @@ echo TabularForm::widget([
 ]);
 echo  "    </div>\n\n";
 ?>
-
-</div>

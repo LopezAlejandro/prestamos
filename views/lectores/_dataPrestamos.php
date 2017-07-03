@@ -1,6 +1,7 @@
 <?php
 use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
+use yii\helpers\VarDumper;
 
     $dataProvider = new ArrayDataProvider([
         'allModels' => $model->prestamos,
@@ -8,19 +9,14 @@ use yii\data\ArrayDataProvider;
     ]);
     $gridColumns = [
         ['class' => 'yii\grid\SerialColumn'],
-        'prestamos_id',
-        'extension',
-        'fecha_devolucion',
-        'activo',
         'nro_prestamo',
+        'fecha_devolucion',
         [
-                'attribute' => 'libros.titulo',
-                'label' => Yii::t('app', 'Título')
-            ],
-        [
-                'attribute' => 'libros.ejemplar',
-                'label' => Yii::t('app', 'Ejemplar')
-            ],
+    			'class'=>'kartik\grid\BooleanColumn',
+    			'attribute'=>'activo', 
+    			'vAlign'=>'middle'
+		  ], 
+        'activo',
         [
             'class' => 'yii\grid\ActionColumn',
             'controller' => 'prestamos'

@@ -14,6 +14,7 @@ $items = [
         'content' => $this->render('_dataPrestamos', [
             'model' => $model,
             'row' => $model->prestamos,
+            //'user' => $model->libros,
         ]),
     ],
     ];
