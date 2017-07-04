@@ -12,7 +12,7 @@ use yii\data\ArrayDataProvider;
         ['class' => 'yii\grid\SerialColumn'],
         [
                 'attribute' => 'librosLibros.titulo',
-                'label' => Yii::t('app', 'Libros Libros')
+                'label' => Yii::t('app', 'Título')
             ],
             [
                 'attribute' => 'librosLibros.ejemplar',
@@ -20,7 +20,7 @@ use yii\data\ArrayDataProvider;
             ],
         [
             'class' => 'yii\grid\ActionColumn',
-            'controller' => 'prestamos-has-libros'
+            'controller' => 'prestamos_has_libros'
         ],
     ];
     
