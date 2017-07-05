@@ -80,7 +80,7 @@ echo TabularForm::widget([
     ]
 ]);
 
-echo dump($dataProvider); 
+echo VarDumper::dump($dataProvider); 
 echo  "    </div>\n\n";
 
 ?>

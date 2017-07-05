@@ -16,7 +16,7 @@ use yii\helpers\Html;
                 'label' => Yii::t('app', 'Nro de Prestamo')
         ],
         [
-                'attribute' => 'prestamosPrestamos.lector_id',
+                'attribute' => 'prestamosPrestamos.lectores_id',
                 'label' => Yii::t('app', 'Lector')
         ],
 //		  [
@@ -24,7 +24,7 @@ use yii\helpers\Html;
 //    			'vAlign'=>'middle',
 //    			'width'=>'180px',
 //    			'value'=>function ($model, $key, $index, $widget) { 
-//        						return \app\models\Lectores::findOne('lectores_id').nombre ; 
+//        						return \app\models\Lectores::findOne($key).nombre ; 
 //    						},
 //    			'filter'	=> false,
 //    			'format' => 'raw'

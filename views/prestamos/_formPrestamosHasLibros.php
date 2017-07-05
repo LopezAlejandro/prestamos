@@ -5,7 +5,6 @@ use kartik\builder\TabularForm;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
-use yii\helpers\BaseVarDumper;
 
 $dataProvider = new ArrayDataProvider([
     'allModels' => $row,
@@ -79,8 +78,6 @@ echo TabularForm::widget([
         ]
     ]
 ]);
-
-echo VarDumper::dump($dataProvider); 
 echo  "    </div>\n\n";
 
 ?>

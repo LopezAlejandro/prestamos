@@ -24,15 +24,15 @@ use yii\helpers\Html;
 //    			'vAlign'=>'middle',
 //    			'width'=>'180px',
 //    			'value'=>function ($model, $key, $index, $widget) { 
-//        						return \app\models\Lectores::findOne('lectores_id').nombre ; 
+//        						return \app\models\Lectores::findOne($key).nombre ; 
 //    						},
 //    			'filter'	=> false,
 //    			'format' => 'raw'
 //    	  ],			
-        [
-            'class' => 'yii\grid\ActionColumn',
-            'controller' => 'prestamos-has-libros'
-        ],
+//        [
+//            'class' => 'yii\grid\ActionColumn',
+//            'controller' => 'prestamos-has-libros'
+//        ],
     ];
     
     echo GridView::widget([

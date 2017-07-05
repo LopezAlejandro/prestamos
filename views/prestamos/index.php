@@ -32,6 +32,7 @@ $this->registerJs($search);
     <?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
+       
         [
             'class' => 'kartik\grid\ExpandRowColumn',
             'width' => '50px',
@@ -45,8 +46,7 @@ $this->registerJs($search);
             'expandOneOnly' => true
         ],
         ['attribute' => 'prestamos_id', 'visible' => false],
-        'extension',
-        'fecha_devolucion',
+        'nro_prestamo',
         [
                 'attribute' => 'lectores_id',
                 'label' => Yii::t('app', 'Lectores'),
@@ -59,9 +59,14 @@ $this->registerJs($search);
                     'pluginOptions' => ['allowClear' => true],
                 ],
                 'filterInputOptions' => ['placeholder' => 'Lectores', 'id' => 'grid-prestamos-search-lectores_id']
-            ],
-        'activo',
-        'nro_prestamo',
+        ],
+        'fecha_devolucion',
+        //'extension',
+       [
+    			'class'=>'kartik\grid\BooleanColumn',
+    			'attribute'=>'activo', 
+    			'vAlign'=>'middle'
+		  ], 
         [
             'class' => 'yii\grid\ActionColumn',
         ],

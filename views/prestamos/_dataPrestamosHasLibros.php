@@ -18,10 +18,10 @@ use yii\data\ArrayDataProvider;
                 'attribute' => 'librosLibros.ejemplar',
                 'label' => Yii::t('app', 'Ejemplar')
             ],
-        [
-            'class' => 'yii\grid\ActionColumn',
-            'controller' => 'prestamos-has-libros'
-        ],
+//        [
+//            'class' => 'yii\grid\ActionColumn',
+//            'controller' => 'prestamos-has-libros'
+//        ],
     ];
     
     echo GridView::widget([

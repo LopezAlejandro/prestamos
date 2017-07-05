@@ -11,6 +11,11 @@ use yii\helpers\VarDumper;
         ['class' => 'yii\grid\SerialColumn'],
         'nro_prestamo',
         'fecha_devolucion',
+        [
+    			'class'=>'kartik\grid\BooleanColumn',
+    			'attribute'=>'activo', 
+    			'vAlign'=>'middle'
+		  ], 
         'activo',
         [
             'class' => 'yii\grid\ActionColumn',

@@ -54,13 +54,18 @@ $this->registerJs($search);
                     return $model->lectores->nombre;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->asArray()->all(), 'lectores_id', 'lectores_id'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->asArray()->all(), 'lectores_id', 'nombre'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
                 'filterInputOptions' => ['placeholder' => 'Lectores', 'id' => 'grid-prestamos-search-lectores_id']
             ],
-        'activo',
+            [
+    			'class'=>'kartik\grid\BooleanColumn',
+    			'attribute'=>'activo', 
+    			'vAlign'=>'middle'
+		  ], 
+        
         'nro_prestamo',
         [
             'class' => 'yii\grid\ActionColumn',

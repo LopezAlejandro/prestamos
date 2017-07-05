@@ -16,7 +16,6 @@ use yii\helpers\VarDumper;
     			'attribute'=>'activo', 
     			'vAlign'=>'middle'
 		  ], 
-        'activo',
         [
             'class' => 'yii\grid\ActionColumn',
             'controller' => 'prestamos'

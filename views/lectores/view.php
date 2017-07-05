@@ -22,16 +22,16 @@ $this->params['breadcrumbs'][] = $this->title;
              Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> ' . Yii::t('app', 'PDF'), 
                 ['pdf', 'id' => $model->lectores_id],
                 [
-                    'class' => 'btn btn-danger',
+                    'class' => 'btn btn-danger btn-xs',
                     'target' => '_blank',
                     'data-toggle' => 'tooltip',
                     'title' => Yii::t('app', 'Will open the generated PDF file in a new window')
                 ]
             )?>
             
-            <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->lectores_id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->lectores_id], ['class' => 'btn btn-primary btn-xs']) ?>
             <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->lectores_id], [
-                'class' => 'btn btn-danger',
+                'class' => 'btn btn-danger btn-xs',
                 'data' => [
                     'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     'method' => 'post',
