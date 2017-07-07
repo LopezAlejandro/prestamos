@@ -18,10 +18,10 @@ use yii\data\ArrayDataProvider;
                 'attribute' => 'librosLibros.ejemplar',
                 'label' => Yii::t('app', 'Ejemplar')
             ],
-        [
-            'class' => 'yii\grid\ActionColumn',
-            'controller' => 'prestamos-has-libros'
-        ],
+//        [
+//            'class' => 'yii\grid\ActionColumn',
+//            'controller' => 'prestamos-has-libros'
+//        ],
     ];
     
     echo GridView::widget([
@@ -45,3 +45,6 @@ use yii\data\ArrayDataProvider;
         'showPageSummary' => false,
         'persistResize' => false,
     ]);
+
+VarDumper::dump($dataProvider ,  $dept = 10,  $highlight = true);
+

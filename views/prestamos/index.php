@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
+
 $this->title = Yii::t('app', 'Prestamos');
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
@@ -71,6 +72,10 @@ $this->registerJs($search);
             'class' => 'yii\grid\ActionColumn',
         ],
     ]; 
+    
+//    VarDumper::dump($dataProvider ,  $dept = 10,  $highlight = true);
+
+
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

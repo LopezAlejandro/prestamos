@@ -2,6 +2,8 @@
 use yii\helpers\Html;
 use kartik\tabs\TabsX;
 use yii\helpers\Url;
+use yii\helpers\VarDumper;
+
 $items = [
  //   [
 //        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Prestamos')),

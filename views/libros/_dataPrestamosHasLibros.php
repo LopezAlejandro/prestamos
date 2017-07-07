@@ -13,7 +13,7 @@ use yii\helpers\Html;
         ['class' => 'yii\grid\SerialColumn'],
         [
                 'attribute' => 'prestamosPrestamos.nro_prestamo',
-                'label' => Yii::t('app', 'Nro de Prestamo')
+                'label' => Yii::t('app', 'Nro de Préstamo')
         ],
         [
                 'attribute' => 'prestamosPrestamos.lectores_id',

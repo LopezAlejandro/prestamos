@@ -1,6 +1,7 @@
 <?php
 use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
+use yii\helpers\VarDumper;
 
     $dataProvider = new ArrayDataProvider([
         'allModels' => $model->prestamosHasLibros,
@@ -45,3 +46,6 @@ use yii\data\ArrayDataProvider;
         'showPageSummary' => false,
         'persistResize' => false,
     ]);
+
+VarDumper::dump($dataProvider ,  $dept = 10,  $highlight = true);
+

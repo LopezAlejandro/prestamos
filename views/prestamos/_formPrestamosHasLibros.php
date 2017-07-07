@@ -5,7 +5,8 @@ use kartik\builder\TabularForm;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
-
+use yii\helpers\VarDumper;
+ 
 $dataProvider = new ArrayDataProvider([
     'allModels' => $row,
     'pagination' => [
@@ -47,17 +48,27 @@ echo TabularForm::widget([
         ],
         
         'titulo' => [
-        		'type' => tabularForm::INPUT_STATIC,
-        		'options' => [
-        		'data' => 'libros_libros_id'
-        		],
+//        		'type' => tabularForm::INPUT_STATIC,
+//        		'value' => function ($m, $k, $i, $w) { 
+        						//$p = compact('model', 'key', 'index');
+//        						return $w->col(1);
+//    			},
+//        		'options' => [
+//        		'value' => function($model, $key, $index, $widget) {
+//                return ($index);
+//            },
+//        		],
         		
         ],
         'ejemplar' => [
         		'type' => tabularForm::INPUT_STATIC,
         		
         ],
-        
+//        'datos' => [
+//        		'type' => tabularForm::INPUT_STATIC,
+//        		'value' =>  VarDumper::dump($row, $depth = 10, $highlight = true) 
+//        		
+//        ],
         'del' => [
             'type' => 'raw',
             'label' => '',
@@ -76,8 +87,10 @@ echo TabularForm::widget([
             'footer' => false,
             'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Agregar Libros al Préstamo'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()']),
         ]
-    ]
+    ],
+    
 ]);
+//echo VarDumper::dump($dataProvider, $depth = 10, $highlight = true); 
 echo  "    </div>\n\n";
 
 ?>

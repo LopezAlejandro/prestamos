@@ -29,10 +29,10 @@ use yii\helpers\Html;
 //    			'filter'	=> false,
 //    			'format' => 'raw'
 //    	  ],			
-        [
-            'class' => 'yii\grid\ActionColumn',
-            'controller' => 'prestamos-has-libros'
-        ],
+//        [
+//            'class' => 'yii\grid\ActionColumn',
+//            'controller' => 'prestamos-has-libros'
+//        ],
     ];
     
     echo GridView::widget([

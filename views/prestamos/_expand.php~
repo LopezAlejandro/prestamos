@@ -9,20 +9,21 @@ $items = [
 //            'model' => $model,
 //        ]),
 //    ],
-        [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Multas Has Prestamos')),
-        'content' => $this->render('_dataMultasHasPrestamos', [
-            'model' => $model,
-            'row' => $model->multasHasPrestamos,
-        ]),
-    ],
-                    [
+		[
         'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Prestamos Has Libros')),
         'content' => $this->render('_dataPrestamosHasLibros', [
             'model' => $model,
             'row' => $model->prestamosHasLibros,
         ]),
-    ],
+      ],
+      [
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Multas Has Prestamos')),
+        'content' => $this->render('_dataMultasHasPrestamos', [
+            'model' => $model,
+            'row' => $model->multasHasPrestamos,
+        ]),
+      ],
+             
         ];
 echo TabsX::widget([
     'items' => $items,

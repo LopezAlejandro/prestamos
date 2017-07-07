@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
+
 $this->title = Yii::t('app', 'Prestamos');
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
@@ -32,6 +33,7 @@ $this->registerJs($search);
     <?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
+       
         [
             'class' => 'kartik\grid\ExpandRowColumn',
             'width' => '50px',
@@ -45,8 +47,7 @@ $this->registerJs($search);
             'expandOneOnly' => true
         ],
         ['attribute' => 'prestamos_id', 'visible' => false],
-        'extension',
-        'fecha_devolucion',
+        'nro_prestamo',
         [
                 'attribute' => 'lectores_id',
                 'label' => Yii::t('app', 'Lectores'),
@@ -59,18 +60,22 @@ $this->registerJs($search);
                     'pluginOptions' => ['allowClear' => true],
                 ],
                 'filterInputOptions' => ['placeholder' => 'Lectores', 'id' => 'grid-prestamos-search-lectores_id']
-            ],
-            [
+        ],
+        'fecha_devolucion',
+        //'extension',
+       [
     			'class'=>'kartik\grid\BooleanColumn',
     			'attribute'=>'activo', 
     			'vAlign'=>'middle'
 		  ], 
-        
-        'nro_prestamo',
         [
             'class' => 'yii\grid\ActionColumn',
         ],
     ]; 
+    
+    VarDumper::dump($dataProvider ,  $dept = 10,  $highlight = true);
+
+
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
