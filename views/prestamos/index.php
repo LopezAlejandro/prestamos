@@ -8,7 +8,6 @@ use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-
 $this->title = Yii::t('app', 'Prestamos');
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
@@ -26,14 +25,13 @@ $this->registerJs($search);
         <?= Html::a(Yii::t('app', 'Create Prestamos'), ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
--->    
+-->
     <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
     <?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
-       
         [
             'class' => 'kartik\grid\ExpandRowColumn',
             'width' => '50px',
@@ -46,10 +44,15 @@ $this->registerJs($search);
             'headerOptions' => ['class' => 'kartik-sheet-style'],
             'expandOneOnly' => true
         ],
-        ['attribute' => 'prestamos_id', 'visible' => false],
-        'nro_prestamo',
+        [
+         'attribute' => 'prestamos_id',
+         'contentOptions' => ['style' => 'width:50px;'],
+        ],  
+        ['attribute' => 'extension', 'visible' => false],
+        
         [
                 'attribute' => 'lectores_id',
+               
                 'label' => Yii::t('app', 'Lectores'),
                 'value' => function($model){                   
                     return $model->lectores->nombre;                   
@@ -61,21 +64,18 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Lectores', 'id' => 'grid-prestamos-search-lectores_id']
         ],
-        'fecha_devolucion',
-        //'extension',
-       [
-    			'class'=>'kartik\grid\BooleanColumn',
-    			'attribute'=>'activo', 
-    			'vAlign'=>'middle'
-		  ], 
+        ['attribute' => 'fecha_devolucion',
+         'contentOptions' => ['style' => 'width:200px;'],
+         ],
         [
-            'class' => 'yii\grid\ActionColumn',
-        ],
+		               'class'=>'kartik\grid\BooleanColumn',
+		               'attribute'=>'activo',
+		               'vAlign'=>'middle'
+		  ], 
+//    [
+//           'class' => 'yii\grid\ActionColumn',
+//        ],
     ]; 
-    
-//    VarDumper::dump($dataProvider ,  $dept = 10,  $highlight = true);
-
-
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -93,7 +93,7 @@ $this->registerJs($search);
                 Html::a('<i class="glyphicon glyphicon-plus"></i>', 
                 	['create'], 
                 	['class' => 'btn btn-success',
-                		'title'=>Yii::t('app', 'Crear Préstamos') 
+                		'title'=>Yii::t('app', 'Nuevo Préstamo') 
                 	]
                 ).' '.
                 Html::a('<i class="glyphicon glyphicon-repeat"></i>', 

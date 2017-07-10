@@ -22,15 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
 <?php 
     $gridColumn = [
-        ['attribute' => 'prestamos_id', 'visible' => false],
-        'extension',
+        'prestamos_id',
+        ['attribute' => 'extension', 'visible' => false],
         'fecha_devolucion',
         [
                 'attribute' => 'lectores.lectores_id',
                 'label' => Yii::t('app', 'Lectores')
             ],
         'activo',
-        'nro_prestamo',
     ];
     echo DetailView::widget([
         'model' => $model,

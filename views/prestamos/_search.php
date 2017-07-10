@@ -15,9 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'prestamos_id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
+    <?= $form->field($model, 'prestamos_id')->textInput(['placeholder' => 'Prestamos']) ?>
 
-    <?= $form->field($model, 'extension')->checkbox() ?>
+    <?= $form->field($model, 'extension', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
     <?= $form->field($model, 'fecha_devolucion')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
@@ -40,8 +40,6 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'activo')->checkbox() ?>
-
-    <?php /* echo $form->field($model, 'nro_prestamo')->textInput(['placeholder' => 'Nro Prestamo']) */ ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

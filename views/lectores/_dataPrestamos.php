@@ -9,7 +9,10 @@ use yii\helpers\VarDumper;
     ]);
     $gridColumns = [
         ['class' => 'yii\grid\SerialColumn'],
-        'nro_prestamo',
+        [
+        		'attribute' => 'prestamos_id',
+        		'label'=> Yii::t('app','Nro de Préstamo')
+        ],		
         'fecha_devolucion',
         [
     			'class'=>'kartik\grid\BooleanColumn',

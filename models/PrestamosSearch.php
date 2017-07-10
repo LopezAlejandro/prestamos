@@ -18,7 +18,7 @@ use app\models\Prestamos;
     public function rules()
     {
         return [
-            [['prestamos_id', 'extension', 'lectores_id', 'activo', 'nro_prestamo'], 'integer'],
+            [['prestamos_id', 'extension', 'lectores_id', 'activo'], 'integer'],
             [['fecha_devolucion', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
         ];
     }
@@ -63,7 +63,6 @@ use app\models\Prestamos;
             'activo' => $this->activo,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'nro_prestamo' => $this->nro_prestamo,
         ]);
 
         $query->andFilterWhere(['like', 'created_by', $this->created_by])

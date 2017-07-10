@@ -5,8 +5,7 @@ use kartik\builder\TabularForm;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
-use yii\helpers\VarDumper;
- 
+
 $dataProvider = new ArrayDataProvider([
     'allModels' => $row,
     'pagination' => [
@@ -22,53 +21,16 @@ echo TabularForm::widget([
         'type' => TabularForm::INPUT_TEXT,
     ],
     'attributes' => [
-    	  'libros_id'=>[ // primary key attribute
-            'type'=>TabularForm::INPUT_HIDDEN, 
-            'columnOptions'=>['hidden'=>true]
-        ], 
-//        'nro_libro' => [
-//        		'label' => 'Nro de Libro',
-//        		'type' => TabularForm::INPUT_WIDGET,
-//            'widgetClass' => \kartik\widgets\Select2::className(),
-//            'options' => [
-//                'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('ejemplar')->asArray()->all(), 'libros_id', 'nro_libro'),
-//                'options' => ['placeholder' => Yii::t('app', 'Nro de Libro')],
-//             ]   
-//        ],
-        
         'libros_libros_id' => [
             'label' => 'Libros',
             'type' => TabularForm::INPUT_WIDGET,
             'widgetClass' => \kartik\widgets\Select2::className(),
             'options' => [
-                'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('ejemplar')->asArray()->all(), 'libros_id', 'nro_libro'),
+                'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('libros_id')->asArray()->all(), 'libros_id', 'libros_id'),
                 'options' => ['placeholder' => Yii::t('app', 'Choose Libros')],
             ],
             'columnOptions' => ['width' => '200px']
         ],
-        
-        'titulo' => [
-//        		'type' => tabularForm::INPUT_STATIC,
-//        		'value' => function ($m, $k, $i, $w) { 
-        						//$p = compact('model', 'key', 'index');
-//        						return $w->col(1);
-//    			},
-//        		'options' => [
-//        		'value' => function($model, $key, $index, $widget) {
-//                return ($index);
-//            },
-//        		],
-        		
-        ],
-        'ejemplar' => [
-        		'type' => tabularForm::INPUT_STATIC,
-        		
-        ],
-//        'datos' => [
-//        		'type' => tabularForm::INPUT_STATIC,
-//        		'value' =>  VarDumper::dump($row, $depth = 10, $highlight = true) 
-//        		
-//        ],
         'del' => [
             'type' => 'raw',
             'label' => '',
@@ -85,12 +47,10 @@ echo TabularForm::widget([
             'type' => GridView::TYPE_DEFAULT,
             'before' => false,
             'footer' => false,
-            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Agregar Libros al Préstamo'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()']),
+            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Add Prestamos Has Libros'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()']),
         ]
-    ],
-    
+    ]
 ]);
-//echo VarDumper::dump($dataProvider, $depth = 10, $highlight = true); 
 echo  "    </div>\n\n";
-
 ?>
+

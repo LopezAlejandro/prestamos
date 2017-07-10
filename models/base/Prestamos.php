@@ -18,7 +18,6 @@ use yii\behaviors\BlameableBehavior;
  * @property string $updated_at
  * @property string $created_by
  * @property string $updated_by
- * @property integer $nro_prestamo
  *
  * @property \app\models\MultasHasPrestamos[] $multasHasPrestamos
  * @property \app\models\Multas[] $multasMultas
@@ -36,11 +35,10 @@ class Prestamos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['extension', 'fecha_devolucion', 'lectores_id', 'activo', 'nro_prestamo'], 'required'],
-            [['extension', 'lectores_id', 'activo', 'nro_prestamo'], 'integer'],
+            [['extension', 'fecha_devolucion', 'lectores_id', 'activo'], 'required'],
+            [['extension', 'lectores_id', 'activo'], 'integer'],
             [['fecha_devolucion', 'created_at', 'updated_at'], 'safe'],
-            [['created_by', 'updated_by'], 'string', 'max' => 45],
-            [['nro_prestamo'], 'unique']
+            [['created_by', 'updated_by'], 'string', 'max' => 45]
         ];
     }
     
@@ -58,12 +56,11 @@ class Prestamos extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'prestamos_id' => Yii::t('app', 'Prestamos ID'),
+            'prestamos_id' => Yii::t('app', 'Nro de Préstamo'),
             'extension' => Yii::t('app', 'Extension'),
-            'fecha_devolucion' => Yii::t('app', 'Fecha Devolucion'),
-            'lectores_id' => Yii::t('app', 'Lectores ID'),
+            'fecha_devolucion' => Yii::t('app', 'Fecha Devolución'),
+            'lectores_id' => Yii::t('app', 'Nro de Lector'),
             'activo' => Yii::t('app', 'Activo'),
-            'nro_prestamo' => Yii::t('app', 'Nro Prestamo'),
         ];
     }
     
@@ -102,7 +99,7 @@ class Prestamos extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLibros()
+    public function getLibrosLibros()
     {
         return $this->hasMany(\app\models\Libros::className(), ['libros_id' => 'libros_libros_id'])->viaTable('prestamos_has_libros', ['prestamos_prestamos_id' => 'prestamos_id']);
     }

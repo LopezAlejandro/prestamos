@@ -2,30 +2,28 @@
 use yii\helpers\Html;
 use kartik\tabs\TabsX;
 use yii\helpers\Url;
-use yii\helpers\VarDumper;
-
 $items = [
- //   [
+//    [
 //        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Prestamos')),
 //        'content' => $this->render('_detail', [
 //            'model' => $model,
 //        ]),
 //    ],
 		[
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Prestamos Has Libros')),
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Detalle del Préstamo')),
         'content' => $this->render('_dataPrestamosHasLibros', [
             'model' => $model,
             'row' => $model->prestamosHasLibros,
         ]),
-      ],
-      [
+    	],
+        [
         'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode(Yii::t('app', 'Multas Has Prestamos')),
         'content' => $this->render('_dataMultasHasPrestamos', [
             'model' => $model,
             'row' => $model->multasHasPrestamos,
         ]),
-      ],
-             
+    	],
+    
         ];
 echo TabsX::widget([
     'items' => $items,

@@ -2,6 +2,7 @@
 use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
+use yii\helpers\VarDumper; 
 
     $dataProvider = new ArrayDataProvider([
         'allModels' => $model->prestamosHasLibros,
@@ -12,10 +13,10 @@ use yii\helpers\Html;
     $gridColumns = [
         ['class' => 'yii\grid\SerialColumn'],
         [
-                'attribute' => 'prestamosPrestamos.nro_prestamo',
+                'attribute' => 'prestamosPrestamos.prestamos_id',
                 'label' => Yii::t('app', 'Nro de Préstamo')
         ],
-        [
+	     [
                 'attribute' => 'prestamosPrestamos.lectores_id',
                 'label' => Yii::t('app', 'Lector')
         ],
@@ -24,7 +25,7 @@ use yii\helpers\Html;
 //    			'vAlign'=>'middle',
 //    			'width'=>'180px',
 //    			'value'=>function ($model, $key, $index, $widget) { 
-//        						return \app\models\Lectores::findOne($key).nombre ; 
+//        						return \app\models\Lectores::findOne($index).nombre ; 
 //    						},
 //    			'filter'	=> false,
 //    			'format' => 'raw'
@@ -56,3 +57,4 @@ use yii\helpers\Html;
         'showPageSummary' => false,
         'persistResize' => false,
     ]);
+//echo VarDumper::dump( $dataProvider, $depth = 10, $highlight = true );

@@ -1,8 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use yii\helpers\BaseVarDumper;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Prestamos */
@@ -31,13 +30,11 @@ use yii\helpers\BaseVarDumper;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->errorSummary($model); ?>
-
-    <?= $form->field($model, 'prestamos_id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
-    
-    <?= $form->field($model, 'nro_prestamo')->textInput(['placeholder' => 'Nro Prestamo']) ?>
 <!--
-    <?= $form->field($model, 'extension')->checkbox() ?>
+    <?= $form->field($model, 'prestamos_id')->textInput(['placeholder' => 'Prestamos']) ?>
 -->
+    <?= $form->field($model, 'extension', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
+
     <?= $form->field($model, 'fecha_devolucion')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
         'saveFormat' => 'php:Y-m-d',
@@ -48,38 +45,32 @@ use yii\helpers\BaseVarDumper;
                 'autoclose' => true
             ]
         ],
-        'disabled'=>true, 
     ]); ?>
 
     <?= $form->field($model, 'lectores_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->orderBy('lectores_id')->asArray()->all(), 'lectores_id', 'nombre'),
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->orderBy('lectores_id')->asArray()->all(), 'lectores_id', 'lectores_id'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Lectores')],
         'pluginOptions' => [
             'allowClear' => true
         ],
     ]); ?>
-<!--
+
     <?= $form->field($model, 'activo')->checkbox() ?>
--->
-    
 
     <?php
     $forms = [
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Libros')),
-            'content' => $this->render('_formPrestamosHasLibros', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->prestamosHasLibros),
-                
-            ]),
-        ],
-        
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Multas')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'MultasHasPrestamos')),
             'content' => $this->render('_formMultasHasPrestamos', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->multasHasPrestamos),
             ]),
         ],
-        
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'PrestamosHasLibros')),
+            'content' => $this->render('_formPrestamosHasLibros', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->prestamosHasLibros),
+            ]),
+        ],
     ];
     echo kartik\tabs\TabsX::widget([
         'items' => $forms,

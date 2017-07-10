@@ -30,10 +30,10 @@ class Prestamos extends BasePrestamos
     public function attributeHints()
     {
         return [
-            'prestamos_id' => Yii::t('app', 'Nro de Préstamo'),
+            'prestamos_id' => Yii::t('app', 'Prestamos ID'),
             'extension' => Yii::t('app', 'Extension'),
-            'fecha_devolucion' => Yii::t('app', 'Fecha Devolución'),
-            'lectores_id' => Yii::t('app', 'Nro de Lector'),
+            'fecha_devolucion' => Yii::t('app', 'Fecha Devolucion'),
+            'lectores_id' => Yii::t('app', 'Lectores ID'),
             'activo' => Yii::t('app', 'Activo'),
         ];
     }
