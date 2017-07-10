@@ -2,7 +2,8 @@
 use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
-use yii\helpers\VarDumper; 
+use yii\helpers\VarDumper;
+ 
 
     $dataProvider = new ArrayDataProvider([
         'allModels' => $model->prestamosHasLibros,

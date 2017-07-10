@@ -9,11 +9,11 @@ namespace app\models;
  */
 class PrestamosQuery extends \yii\db\ActiveQuery
 {
-    public function active()
+    /*public function active()
     {
-        $this->andWhere('[[activo]]=1');
+        $this->andWhere('[[status]]=1');
         return $this;
-    }
+    }*/
 
     /**
      * @inheritdoc

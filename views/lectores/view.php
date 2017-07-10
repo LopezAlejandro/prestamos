@@ -77,15 +77,19 @@ if($providerPrestamos->totalCount){
     $gridColumnPrestamos = [
         ['class' => 'yii\grid\SerialColumn'],
             'prestamos_id',
-            'extension',
+//            'extension',
             'fecha_devolucion',
             ['attribute' => 'lectores_id', 'visible' => false],
-            'activo',
-            'nro_prestamo',
             [
-                'attribute' => 'libros.titulo',
-                'label' => Yii::t('app', 'Libros')
-            ],
+		               'class'=>'kartik\grid\BooleanColumn',
+		               'attribute'=>'activo',
+		               'vAlign'=>'middle'
+		      ], 
+//            'nro_prestamo',
+//            [
+//                'attribute' => 'librosLibros.titulo',
+//                'label' => Yii::t('app', 'Libros')
+//            ],
     ];
     echo Gridview::widget([
         'dataProvider' => $providerPrestamos,

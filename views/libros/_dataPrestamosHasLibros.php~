@@ -57,4 +57,4 @@ use yii\helpers\VarDumper;
         'showPageSummary' => false,
         'persistResize' => false,
     ]);
-echo VarDumper::dump( $dataProvider, $depth = 10, $highlight = true );
+//echo VarDumper::dump( $dataProvider, $depth = 10, $highlight = true );
