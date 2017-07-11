@@ -15,23 +15,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= Yii::t('app', 'Prestamos').' '. Html::encode($this->title) ?></h2>
+            <h2><?= Yii::t('app', 'Prestamo').' Nro '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
 <?=             
              Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> ' . Yii::t('app', 'PDF'), 
                 ['pdf', 'id' => $model->prestamos_id],
                 [
-                    'class' => 'btn btn-danger',
+                    'class' => 'btn btn-xs btn-danger',
                     'target' => '_blank',
                     'data-toggle' => 'tooltip',
                     'title' => Yii::t('app', 'Will open the generated PDF file in a new window')
                 ]
             )?>
             
-            <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->prestamos_id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->prestamos_id], ['class' => ' btn btn-xs btn-primary']) ?>
             <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->prestamos_id], [
-                'class' => 'btn btn-danger',
+                'class' => 'btn btn-xs btn-danger',
                 'data' => [
                     'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     'method' => 'post',
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ['attribute' => 'extension', 'visible' => false],
         'fecha_devolucion',
         [
-            'attribute' => 'lectores.lectores_id',
+            'attribute' => 'lectores.nombre',
             'label' => Yii::t('app', 'Lectores'),
         ],
         'activo',
@@ -90,8 +90,8 @@ if($providerPrestamosHasLibros->totalCount){
     $gridColumnPrestamosHasLibros = [
         ['class' => 'yii\grid\SerialColumn'],
                         [
-                'attribute' => 'librosLibros.libros_id',
-                'label' => Yii::t('app', 'Libros Libros')
+                'attribute' => 'librosLibros.titulo',
+                'label' => Yii::t('app', 'Título')
             ],
     ];
     echo Gridview::widget([

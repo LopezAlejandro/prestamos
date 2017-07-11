@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\editable\Editable;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Prestamos */
@@ -48,25 +49,53 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'lectores_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->orderBy('lectores_id')->asArray()->all(), 'lectores_id', 'lectores_id'),
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->orderBy('lectores_id')->asArray()->all(), 'lectores_id', 'nombre'),
         'options' => ['placeholder' => Yii::t('app', 'Choose Lectores')],
         'pluginOptions' => [
             'allowClear' => true
         ],
     ]); ?>
+<?php    
+    echo '<label>Address</label><br>'; 
+	 $editable = Editable::begin([
+    		'model'=>$model,
+    		'attribute'=>'lectores_id',
+    		'data' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->orderBy('lectores_id')->asArray()->all(), 'lectores_id', 'nombre'),
+    		'asPopover' => false,
+    		'inlineSettings' => [
+        			'templateBefore' => Editable::INLINE_BEFORE_2, 
+        			'templateAfter' =>  Editable::INLINE_AFTER_2
+    		],
+    		'contentOptions' => ['style'=>'width:350px'],
+    		'displayValue' => '15th Main, OK, 10322',
+    		'options'=>['placeholder'=>'Enter location...']
+	 ]);
+	 //$form = $editable->getForm();
+	 //echo Html::hiddenInput('kv-complex', '1');
+	 //$editable->afterInput = 
+    //$form->field($model, 'lectores->nombre')->widget(\kartik\widgets\Select2::classname(), [
+	    
+        //'data'=>$data, // any list of values
+    //    'options'=>['placeholder'=>'Enter state...'],
+    //    'pluginOptions'=>['allowClear'=>true]
+    //]) . "\n" .
+    //$form->field($model, 'lectores->direccion')->textInput(['placeholder'=>'Enter zip code...']);
+	 Editable::end();
+?>
 
+<!--
     <?= $form->field($model, 'activo')->checkbox() ?>
-
+-->
     <?php
     $forms = [
+//        [
+//            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'MultasHasPrestamos')),
+//            'content' => $this->render('_formMultasHasPrestamos', [
+//                'row' => \yii\helpers\ArrayHelper::toArray($model->multasHasPrestamos),
+//           ]),
+//        ],
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'MultasHasPrestamos')),
-            'content' => $this->render('_formMultasHasPrestamos', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->multasHasPrestamos),
-            ]),
-        ],
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'PrestamosHasLibros')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Libros')),
             'content' => $this->render('_formPrestamosHasLibros', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->prestamosHasLibros),
             ]),

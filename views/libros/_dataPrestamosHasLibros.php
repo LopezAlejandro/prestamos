@@ -25,9 +25,9 @@ use yii\helpers\VarDumper;
 //    			'attribute'=>'lectores_id', 
 //    			'vAlign'=>'middle',
 //    			'width'=>'180px',
-//    			'value'=>function ($model, $key, $index, $widget) { 
-//        						return \app\models\Lectores::findOne($index).nombre ; 
-//    						},
+//    			'value'=>function ($model) { 
+//        						return $model->lectores->nombre ;
+//      					},
 //    			'filter'	=> false,
 //    			'format' => 'raw'
 //    	  ],			
@@ -58,4 +58,4 @@ use yii\helpers\VarDumper;
         'showPageSummary' => false,
         'persistResize' => false,
     ]);
-//echo VarDumper::dump( $dataProvider, $depth = 10, $highlight = true );
+//echo VarDumper::dump( $cliente, $depth = 10, $highlight = true );

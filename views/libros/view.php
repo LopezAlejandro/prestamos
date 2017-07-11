@@ -102,7 +102,7 @@ if($providerPrestamosHasLibros->totalCount){
         ['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'prestamosPrestamos.prestamos_id',
-                'label' => Yii::t('app', 'Prestamos Prestamos')
+                'label' => Yii::t('app', 'Nro de Préstamo')
             ],
                 ];
     echo Gridview::widget([

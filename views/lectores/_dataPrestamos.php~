@@ -12,7 +12,7 @@ use yii\helpers\VarDumper;
         [
         		'attribute' => 'prestamos_id',
         		'label'=> Yii::t('app','Nro de Préstamo')
-        ]		
+        ],		
         'fecha_devolucion',
         [
     			'class'=>'kartik\grid\BooleanColumn',

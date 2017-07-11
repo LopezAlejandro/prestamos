@@ -21,6 +21,7 @@ use yii\helpers\VarDumper;
 		  ], 
         [
             'class' => 'yii\grid\ActionColumn',
+            'template' => '{view}',
             'controller' => 'prestamos'
         ],
     ];
