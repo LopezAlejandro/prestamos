@@ -5,6 +5,7 @@ use kartik\builder\TabularForm;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
+use yii\helpers\VarDumper;
 
 $dataProvider = new ArrayDataProvider([
     'allModels' => $row,
@@ -31,6 +32,7 @@ echo TabularForm::widget([
             ],
             'columnOptions' => ['width' => '200px']
         ],
+        
         'del' => [
             'type' => 'raw',
             'label' => '',
@@ -52,5 +54,6 @@ echo TabularForm::widget([
     ]
 ]);
 echo  "    </div>\n\n";
+echo VarDumper::dump ( $dataProvider, $depth = 10, $highlight = true );
 ?>
 

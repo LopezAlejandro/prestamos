@@ -5,6 +5,7 @@ use kartik\builder\TabularForm;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
+use yii\helpers\VarDumper;
 
 $dataProvider = new ArrayDataProvider([
     'allModels' => $row,
@@ -26,11 +27,34 @@ echo TabularForm::widget([
             'type' => TabularForm::INPUT_WIDGET,
             'widgetClass' => \kartik\widgets\Select2::className(),
             'options' => [
-                'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('libros_id')->asArray()->all(), 'libros_id', 'nombre'),
+                'data' => \yii\helpers\ArrayHelper::map(\app\models\Libros::find()->orderBy('libros_id')->asArray()->all(), 'libros_id', 'libros_id'),
                 'options' => ['placeholder' => Yii::t('app', 'Choose Libros')],
             ],
             'columnOptions' => ['width' => '200px']
         ],
+        echo '<label>Address</label><br>'; 
+$editable = Editable::begin([
+    'model'=>$model,
+    'attribute'=>'address_1',
+    'asPopover' => false,
+    'inlineSettings' => [
+        'templateBefore' => Editable::INLINE_BEFORE_2, 
+        'templateAfter' =>  Editable::INLINE_AFTER_2
+    ],
+    'contentOptions' => ['style'=>'width:350px'],
+    'displayValue' => '15th Main, OK, 10322',
+    'options'=>['placeholder'=>'Enter location...']
+]);
+$form = $editable->getForm();
+echo Html::hiddenInput('kv-complex', '1');
+$editable->afterInput = 
+    $form->field($model, 'state_2')->widget(\kartik\widgets\Select2::classname(), [
+        'data'=>$data, // any list of values
+        'options'=>['placeholder'=>'Enter state...'],
+        'pluginOptions'=>['allowClear'=>true]
+    ]) . "\n" .
+    $form->field($model, 'zip_code_1')->textInput(['placeholder'=>'Enter zip code...']);
+Editable::end();
         'del' => [
             'type' => 'raw',
             'label' => '',
@@ -52,5 +76,6 @@ echo TabularForm::widget([
     ]
 ]);
 echo  "    </div>\n\n";
+echo VarDumper::dump ( $dataProvider, $depth = 10, $highlight = true );
 ?>
 

@@ -136,15 +136,6 @@ class Lectores extends \yii\db\ActiveRecord
         return new \app\models\LectoresQuery(get_called_class());
     }
     
-    public static function lectorfind($id)
-    {
-        $reader = Lectores::find($id);
-		  $nombre = $reader->nombre;
-       
-        return $nombre;
-    }
-    
-    
     
     
 }
