@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use kartik\grid\GridView;
+//use kartik\detail\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Prestamos */
@@ -48,15 +49,28 @@ $this->params['breadcrumbs'][] = $this->title;
         ['attribute' => 'extension', 'visible' => false],
         'fecha_devolucion',
         [
+           
             'attribute' => 'lectores.nombre',
             'label' => Yii::t('app', 'Lectores'),
+        
         ],
+        
         [
-		      'class'=>'kartik\grid\BooleanColumn',
-		      'label' => Yii::t('app','Status'),
-		      'attribute'=>'activo',
-		      'vAlign'=>'middle'
-		  ],
+                'attribute'=>'activo', 
+                'label'=>Yii::t('app','Status'),
+                'format'=>'raw',
+                'value'=>$model->activo ? '<span class="label label-success">Activo</span>' : '<span class="label label-danger">Devuelto</span>',
+                'valueColOptions'=>['style'=>'width:30%']
+            ]
+        
+        
+        
+//        [
+//		      'class'=>'kartik\grid\BooleanColumn',
+//		      'label' => Yii::t('app','Status'),
+//		      'attribute'=>'activo',
+//		      'vAlign'=>'middle'
+//		  ],
     ];
     echo DetailView::widget([
         'model' => $model,

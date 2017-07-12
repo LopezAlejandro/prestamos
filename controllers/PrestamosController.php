@@ -218,11 +218,14 @@ class PrestamosController extends Controller
     {
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('PrestamosHasLibros');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
-                $row[] = [];
-            return $this->renderAjax('_formPrestamosHasLibros', ['row' => $row]);
-        } else {
-            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-        }
+            
+            					if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add' && sizeof($row) < 3)
+                				$row[] = [];
+            					return $this->renderAjax('_formPrestamosHasLibros', ['row' => $row]);
+        		
+       } 
+       else {
+       		throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+       		}
     }
 }
