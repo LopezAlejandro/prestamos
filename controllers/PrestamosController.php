@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Prestamos;
 use app\models\PrestamosSearch;
+use app\models\Lectores;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

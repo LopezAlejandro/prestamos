@@ -40,11 +40,13 @@ use kartik\editable\Editable;
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
         'saveFormat' => 'php:Y-m-d',
         'ajaxConversion' => true,
+        'disabled'=>true,
         'options' => [
             'pluginOptions' => [
                 'placeholder' => Yii::t('app', 'Choose Fecha Devolucion'),
-                'autoclose' => true
-            ]
+                'autoclose' => true,
+            ],
+            
         ],
     ]); ?>
 
@@ -56,8 +58,6 @@ use kartik\editable\Editable;
         ],
     ]); ?>
 
-	<?= $form->field($user, 'nombre')->textInput(); ?>
-	
 <!--
     <?= $form->field($model, 'activo')->checkbox() ?>
 -->

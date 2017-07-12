@@ -32,29 +32,7 @@ echo TabularForm::widget([
             ],
             'columnOptions' => ['width' => '200px']
         ],
-        echo '<label>Address</label><br>'; 
-$editable = Editable::begin([
-    'model'=>$model,
-    'attribute'=>'address_1',
-    'asPopover' => false,
-    'inlineSettings' => [
-        'templateBefore' => Editable::INLINE_BEFORE_2, 
-        'templateAfter' =>  Editable::INLINE_AFTER_2
-    ],
-    'contentOptions' => ['style'=>'width:350px'],
-    'displayValue' => '15th Main, OK, 10322',
-    'options'=>['placeholder'=>'Enter location...']
-]);
-$form = $editable->getForm();
-echo Html::hiddenInput('kv-complex', '1');
-$editable->afterInput = 
-    $form->field($model, 'state_2')->widget(\kartik\widgets\Select2::classname(), [
-        'data'=>$data, // any list of values
-        'options'=>['placeholder'=>'Enter state...'],
-        'pluginOptions'=>['allowClear'=>true]
-    ]) . "\n" .
-    $form->field($model, 'zip_code_1')->textInput(['placeholder'=>'Enter zip code...']);
-Editable::end();
+        
         'del' => [
             'type' => 'raw',
             'label' => '',
@@ -71,11 +49,11 @@ Editable::end();
             'type' => GridView::TYPE_DEFAULT,
             'before' => false,
             'footer' => false,
-            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Add Prestamos Has Libros'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()']),
+            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Agregar libros'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()']),
         ]
     ]
 ]);
 echo  "    </div>\n\n";
-echo VarDumper::dump ( $dataProvider, $depth = 10, $highlight = true );
+echo VarDumper::dump ( $row, $depth = 10, $highlight = true );
 ?>
 

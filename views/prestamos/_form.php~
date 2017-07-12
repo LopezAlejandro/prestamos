@@ -43,8 +43,10 @@ use kartik\editable\Editable;
         'options' => [
             'pluginOptions' => [
                 'placeholder' => Yii::t('app', 'Choose Fecha Devolucion'),
-                'autoclose' => true
-            ]
+                'autoclose' => true,
+                'readonly' => true
+            ],
+            
         ],
     ]); ?>
 
@@ -56,8 +58,6 @@ use kartik\editable\Editable;
         ],
     ]); ?>
 
-	<?= $form->field($model, 'nombre')->textInput(); ?>
-	
 <!--
     <?= $form->field($model, 'activo')->checkbox() ?>
 -->

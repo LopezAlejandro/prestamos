@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= Yii::t('app', 'Prestamos').' '. Html::encode($this->title) ?></h2>
+            <h2><?= Yii::t('app', 'Prestamo').' Nro '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
 <?=             
@@ -51,7 +51,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'lectores.nombre',
             'label' => Yii::t('app', 'Lectores'),
         ],
-        'activo',
+        [
+		      'class'=>'kartik\grid\BooleanColumn',
+		      'label' => Yii::t('app','Status'),
+		      'attribute'=>'activo',
+		      'vAlign'=>'middle'
+		  ],
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -89,10 +94,14 @@ if($providerMultasHasPrestamos->totalCount){
 if($providerPrestamosHasLibros->totalCount){
     $gridColumnPrestamosHasLibros = [
         ['class' => 'yii\grid\SerialColumn'],
-                        [
-                'attribute' => 'librosLibros.libros_id',
-                'label' => Yii::t('app', 'Libros Libros')
-            ],
+        [
+                'attribute' => 'librosLibros.titulo',
+                'label' => Yii::t('app', 'Título')
+        ],
+        [
+                'attribute' => 'librosLibros.ejemplar',
+                'label' => Yii::t('app', 'Ejemplar')
+        ],
     ];
     echo Gridview::widget([
         'dataProvider' => $providerPrestamosHasLibros,

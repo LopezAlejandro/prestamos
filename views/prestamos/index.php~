@@ -64,11 +64,25 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Lectores', 'id' => 'grid-prestamos-search-lectores_id']
         ],
+        [
+//                'attribute' => 'documento',
+                'label' => Yii::t('app', 'Documento'),
+                'value' => function($model){                   
+                    return $model->lectores->documento;                   
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->asArray()->all(), 'lectores_id', 'documento'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Documento', 'id' => 'grid-prestamos-search-documento']
+        ],
         ['attribute' => 'fecha_devolucion',
          'contentOptions' => ['style' => 'width:200px;'],
          ],
         [
 		               'class'=>'kartik\grid\BooleanColumn',
+		               'label' => Yii::t('app','Status'),
 		               'attribute'=>'activo',
 		               'vAlign'=>'middle'
 		  ], 
@@ -88,21 +102,24 @@ $this->registerJs($search);
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
         // your toolbar can include the additional full export menu
-        'toolbar' => [
-            '{export}',
-            ExportMenu::widget([
-                'dataProvider' => $dataProvider,
-                'columns' => $gridColumn,
-                'target' => ExportMenu::TARGET_BLANK,
-                'fontAwesome' => true,
-                'dropdownOptions' => [
-                    'label' => 'Full',
-                    'class' => 'btn btn-default',
-                    'itemsBefore' => [
-                        '<li class="dropdown-header">Export All Data</li>',
-                    ],
-                ],
-            ]) ,
+        'toolbar'=> [
+            ['content'=>
+                Html::a('<i class="glyphicon glyphicon-plus"></i>', 
+                	['create'], 
+                	['class' => 'btn btn-success',
+                		'title'=>Yii::t('app', 'Nuevo Préstamo') 
+                	]
+                ).' '.
+                Html::a('<i class="glyphicon glyphicon-repeat"></i>', 
+                	['index'], 
+                	['data-pjax'=>0, 
+                		'class'=>'btn btn-default', 
+                		'title'=>Yii::t('kvgrid', 'Reset Grid')
+                	]
+                )
+            ],
+           '{toggleData}',
+           '{export}',
         ],
     ]); ?>
 

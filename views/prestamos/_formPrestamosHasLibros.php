@@ -49,11 +49,12 @@ echo TabularForm::widget([
             'type' => GridView::TYPE_DEFAULT,
             'before' => false,
             'footer' => false,
-            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Add Prestamos Has Libros'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()']),
+            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Agregar libros'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowPrestamosHasLibros()']),
         ]
     ]
+    
 ]);
 echo  "    </div>\n\n";
-echo VarDumper::dump ( $dataProvider, $depth = 10, $highlight = true );
+echo VarDumper::dump ( $row, $depth = 10, $highlight = true );
 ?>
 

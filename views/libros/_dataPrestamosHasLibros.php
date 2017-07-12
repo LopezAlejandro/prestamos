@@ -12,25 +12,41 @@ use yii\helpers\VarDumper;
         }
     ]);
     $gridColumns = [
-        ['class' => 'yii\grid\SerialColumn'],
+        [
+        			 'class' => 'yii\grid\SerialColumn',
+        			 
+        ],
         [
                 'attribute' => 'prestamosPrestamos.prestamos_id',
-                'label' => Yii::t('app', 'Nro de Préstamo')
+                'label' => Yii::t('app', 'Nro de Préstamo'),
+                'width'=>'50px',
+                
         ],
-	     [
-                'attribute' => 'prestamosPrestamos.lectores_id',
-                'label' => Yii::t('app', 'Lector')
-        ],
-//		  [
-//    			'attribute'=>'lectores_id', 
-//    			'vAlign'=>'middle',
-//    			'width'=>'180px',
-//    			'value'=>function ($model) { 
-//        						return $model->lectores->nombre ;
-//      					},
-//    			'filter'	=> false,
-//    			'format' => 'raw'
-//    	  ],			
+//	     [
+//                'attribute' => 'prestamosPrestamos.lectores_id',
+//                'label' => Yii::t('app', 'Lector'),
+//                'width'=>'50px',
+//        ],
+		  [
+    			'header'=>'Nombre', 
+    			'vAlign'=>'middle',
+//    			'width'=>'200px',
+    			'value'=>function ($model, $key, $index) { 
+       						return app\models\Lectores::findOne($model->prestamosPrestamos->lectores_id)->nombre ;
+      					},
+    			'filter'	=> false,
+    			'format' => 'raw'
+    	  ],
+    	  [
+    			'header'=>'Documento', 
+    			'vAlign'=>'middle',
+//    			'width'=>'200px',
+    			'value'=>function ($model, $key, $index) { 
+       						return app\models\Lectores::findOne($model->prestamosPrestamos->lectores_id)->documento ;
+      					},
+    			'filter'	=> false,
+    			'format' => 'raw'
+    	  ],					
 //        [
 //            'class' => 'yii\grid\ActionColumn',
 //            'controller' => 'prestamos-has-libros'
@@ -58,4 +74,4 @@ use yii\helpers\VarDumper;
         'showPageSummary' => false,
         'persistResize' => false,
     ]);
-//echo VarDumper::dump( $cliente, $depth = 10, $highlight = true );
+//echo VarDumper::dump( $model, $depth = 10, $highlight = true );

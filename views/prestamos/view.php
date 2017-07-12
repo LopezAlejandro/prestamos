@@ -51,7 +51,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'lectores.nombre',
             'label' => Yii::t('app', 'Lectores'),
         ],
-        'activo',
+        [
+		      'class'=>'kartik\grid\BooleanColumn',
+		      'label' => Yii::t('app','Status'),
+		      'attribute'=>'activo',
+		      'vAlign'=>'middle'
+		  ],
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -89,10 +94,14 @@ if($providerMultasHasPrestamos->totalCount){
 if($providerPrestamosHasLibros->totalCount){
     $gridColumnPrestamosHasLibros = [
         ['class' => 'yii\grid\SerialColumn'],
-                        [
+        [
                 'attribute' => 'librosLibros.titulo',
                 'label' => Yii::t('app', 'Título')
-            ],
+        ],
+        [
+                'attribute' => 'librosLibros.ejemplar',
+                'label' => Yii::t('app', 'Ejemplar')
+        ],
     ];
     echo Gridview::widget([
         'dataProvider' => $providerPrestamosHasLibros,
@@ -100,7 +109,7 @@ if($providerPrestamosHasLibros->totalCount){
         'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-prestamos-has-libros']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
-            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('app', 'Prestamos Has Libros')),
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('app', 'Detalle')),
         ],
         'columns' => $gridColumnPrestamosHasLibros
     ]);

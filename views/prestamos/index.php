@@ -64,11 +64,25 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Lectores', 'id' => 'grid-prestamos-search-lectores_id']
         ],
+        [
+                'attribute' => 'lectores_id',
+                'label' => Yii::t('app', 'Documento'),
+                'value' => function($model){                   
+                    return $model->lectores->documento;                   
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Lectores::find()->asArray()->all(), 'lectores_id', 'documento'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Documento', 'id' => 'grid-prestamos-search-documento']
+        ],
         ['attribute' => 'fecha_devolucion',
          'contentOptions' => ['style' => 'width:200px;'],
          ],
         [
 		               'class'=>'kartik\grid\BooleanColumn',
+		               'label' => Yii::t('app','Status'),
 		               'attribute'=>'activo',
 		               'vAlign'=>'middle'
 		  ], 
