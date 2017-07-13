@@ -5,7 +5,6 @@ $db = require(__DIR__ . '/db.php');
 
 $config = [
     'id' => 'basic',
-    'name' => 'Sistemas de Préstamos Biblioteca FADU - UBA',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'es',

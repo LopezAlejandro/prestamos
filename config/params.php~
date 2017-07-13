@@ -2,7 +2,6 @@
 
 return [
     'adminEmail' => 'admin@example.com',
-    'name' => 'Sistemas de Préstamos Biblioteca FADU - UBA', 
 //    'components' => [
 //        'view' => [
 //            'theme' => [

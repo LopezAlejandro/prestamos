@@ -803,19 +803,24 @@
         },
         {
             "name": "kartik-v/dependent-dropdown",
-            "version": "v1.4.4",
+            "version": "v1.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/dependent-dropdown.git",
-                "reference": "a13970aec78e8eaae5cb9f1168df20d443f95113"
+                "reference": "1f6dbe5bcd144eaaec726409f03be49ce3392269"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/a13970aec78e8eaae5cb9f1168df20d443f95113",
-                "reference": "a13970aec78e8eaae5cb9f1168df20d443f95113",
+                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/1f6dbe5bcd144eaaec726409f03be49ce3392269",
+                "reference": "1f6dbe5bcd144eaaec726409f03be49ce3392269",
                 "shasum": ""
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "kartik\\plugins\\depdrop\\": ""
@@ -841,7 +846,7 @@
                 "option",
                 "select"
             ],
-            "time": "2015-12-16T18:15:01+00:00"
+            "time": "2017-07-11T08:14:34+00:00"
         },
         {
             "name": "kartik-v/php-date-formatter",
@@ -1282,12 +1287,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-grid.git",
-                "reference": "ffccccb8ab23838461483a6139814f66187bcb3b"
+                "reference": "2e2c10b410b2447e4a464f1dc7f86fddd4993381"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/ffccccb8ab23838461483a6139814f66187bcb3b",
-                "reference": "ffccccb8ab23838461483a6139814f66187bcb3b",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/2e2c10b410b2447e4a464f1dc7f86fddd4993381",
+                "reference": "2e2c10b410b2447e4a464f1dc7f86fddd4993381",
                 "shasum": ""
             },
             "require": {
@@ -1327,7 +1332,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-06-09 10:08:02"
+            "time": "2017-07-10 03:33:18"
         },
         {
             "name": "kartik-v/yii2-helpers",
@@ -2722,12 +2727,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mootensai/yii2-enhanced-gii.git",
-                "reference": "1a8b0cee32b96d21272783d6e04dcef6f6f8d54d"
+                "reference": "de4177f5487655fd5414a5469eecce1a4e22d320"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/1a8b0cee32b96d21272783d6e04dcef6f6f8d54d",
-                "reference": "1a8b0cee32b96d21272783d6e04dcef6f6f8d54d",
+                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/de4177f5487655fd5414a5469eecce1a4e22d320",
+                "reference": "de4177f5487655fd5414a5469eecce1a4e22d320",
                 "shasum": ""
             },
             "require": {
@@ -2740,6 +2745,7 @@
                 "mootensai/yii2-optimistic-lock-validator": "*",
                 "mootensai/yii2-relation-trait": "*",
                 "mootensai/yii2-uuid-behavior": "*",
+                "yii2tech/ar-softdelete": "*",
                 "yiisoft/yii2": "*"
             },
             "type": "yii2-extension",
@@ -2773,7 +2779,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2017-05-17 14:42:34"
+            "time": "2017-07-13 11:19:57"
         },
         {
             "name": "mootensai/yii2-jsblock",
@@ -2860,16 +2866,16 @@
         },
         {
             "name": "mootensai/yii2-relation-trait",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mootensai/yii2-relation-trait.git",
-                "reference": "b41ca3a5a14b0e995eb4b8cdb87dab8e1775ed11"
+                "reference": "0d65c65a0a52b10c92f4ba3aea35805f96d9cf81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mootensai/yii2-relation-trait/zipball/b41ca3a5a14b0e995eb4b8cdb87dab8e1775ed11",
-                "reference": "b41ca3a5a14b0e995eb4b8cdb87dab8e1775ed11",
+                "url": "https://api.github.com/repos/mootensai/yii2-relation-trait/zipball/0d65c65a0a52b10c92f4ba3aea35805f96d9cf81",
+                "reference": "0d65c65a0a52b10c92f4ba3aea35805f96d9cf81",
                 "shasum": ""
             },
             "require": {
@@ -2906,7 +2912,7 @@
                 "transaction",
                 "yii2"
             ],
-            "time": "2016-07-08T09:29:26+00:00"
+            "time": "2017-07-12T07:21:16+00:00"
         },
         {
             "name": "mootensai/yii2-uuid-behavior",
@@ -3213,6 +3219,56 @@
             ],
             "description": "Gii Generator base on Kartik-V extension https://github.com/kartik-v",
             "time": "2016-11-19 10:09:37"
+        },
+        {
+            "name": "yii2tech/ar-softdelete",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2tech/ar-softdelete.git",
+                "reference": "b6595495200ef1e0a62755ff61e52f11f0b04d57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2tech/ar-softdelete/zipball/b6595495200ef1e0a62755ff61e52f11f0b04d57",
+                "reference": "b6595495200ef1e0a62755ff61e52f11f0b04d57",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii2tech\\ar\\softdelete\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "Provides support for ActiveRecord soft delete in Yii2",
+            "keywords": [
+                "active",
+                "delete",
+                "integrity",
+                "record",
+                "smart",
+                "soft",
+                "yii2"
+            ],
+            "time": "2016-12-08T14:07:12+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -3604,16 +3660,16 @@
         },
         {
             "name": "codeception/base",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/base.git",
-                "reference": "6724500be5f890b086440a7f40941565b313b3d1"
+                "reference": "c146cf4888f5789d9dbd35d6204e2aa7aa2e94e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/base/zipball/6724500be5f890b086440a7f40941565b313b3d1",
-                "reference": "6724500be5f890b086440a7f40941565b313b3d1",
+                "url": "https://api.github.com/repos/Codeception/base/zipball/c146cf4888f5789d9dbd35d6204e2aa7aa2e94e9",
+                "reference": "c146cf4888f5789d9dbd35d6204e2aa7aa2e94e9",
                 "shasum": ""
             },
             "require": {
@@ -3648,6 +3704,7 @@
                 "php-amqplib/php-amqplib": "~2.4",
                 "predis/predis": "^1.0",
                 "squizlabs/php_codesniffer": "~2.0",
+                "symfony/process": ">=2.7 <4.0",
                 "vlucas/phpdotenv": "^2.4.0"
             },
             "suggest": {
@@ -3692,7 +3749,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2017-06-02T00:30:24+00:00"
+            "time": "2017-07-10T20:30:59+00:00"
         },
         {
             "name": "codeception/specify",

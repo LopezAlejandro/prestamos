@@ -157,8 +157,8 @@ class PrestamosController extends Controller
             'orientation' => \kartik\mpdf\Pdf::ORIENT_PORTRAIT,
             'destination' => \kartik\mpdf\Pdf::DEST_BROWSER,
             'content' => $content,
-            'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
-            'cssInline' => '.kv-heading-1{font-size:18px}',
+ //           'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+ //           'cssInline' => '.kv-heading-1{font-size:18px}',
             'options' => ['title' => \Yii::$app->name],
             'methods' => [
                 'SetHeader' => [\Yii::$app->name],
@@ -219,7 +219,7 @@ class PrestamosController extends Controller
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('PrestamosHasLibros');
             
-            					if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add' && sizeof($row) < 4)
+            					if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add' && sizeof($row) < 3)
                 				$row[] = [];
             					return $this->renderAjax('_formPrestamosHasLibros', ['row' => $row]);
         		
